@@ -1,0 +1,60 @@
+{
+  entitites: {
+    users: {
+      88: {
+        id: 88,
+        username: "hellothere",
+        email: "hello@world.net",
+        productIds: [1,2]
+      },
+      101: {
+        id: 101,
+        username: "i_am_groot",
+        email: "hello@groot.starlord",
+        productIds: [1,2]
+      }
+    },
+    products: {
+      1: {
+        titie: "Spotify",
+        header: "A must have app to fullfill your music need",
+        description: "Product description content should goes here... Not filling up the entire thing",
+        upvote: 123,
+        comments: [1]
+
+      },
+      2: {
+        titie: "Slack",
+        header: "Well, you know what this is already, a creativity tool",
+        description: "Product description content should goes here... Not filling up the entire thing",
+        upvote: 666,
+        comments: [2,6]
+      }
+    },
+    comments: {
+      1: {
+        body: "helloworld",
+        author: 88,
+      },
+      2: {
+        body: "This is a comment",
+        author: 101
+      },
+      6 : {
+        body: "This is a sentence, just an example",
+        author: 101
+      }
+    }
+  },
+  ui: {
+    loading: true/false
+  },
+  errors: {
+    login: ["Invalid credentials!"],
+
+  },
+  session: {
+    currentUserId: 88
+  }
+
+}
