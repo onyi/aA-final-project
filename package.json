@@ -1,5 +1,27 @@
 {
   "name": "product_hub",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "description": "A project that clone Product Hunt website.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onyi/aA-final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onyi/aA-final-project/issues"
+  },
+  "homepage": "https://github.com/onyi/aA-final-project#readme"
 }
