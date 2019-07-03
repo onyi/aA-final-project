@@ -1,10 +1,11 @@
 var path = require('path');
 
 module.exports = {
+  context: __dirname,
   entry: "./frontend/product_hub.jsx",
   output: {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
-    filename: "bundle,js"
+    filename: "bundle.js"
   },
   module: {
     rules: [
