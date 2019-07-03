@@ -12,6 +12,7 @@
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
+    "react-toastify": "^5.3.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -27,8 +28,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "webpack",
     "start": "webpack --watch --mode=development",
-    "install": "npm install webpack webpack-cli react react-dom react-router react-router-dom react-redux redux redux-logger redux-thunk @babel/core @babel/preset-react @babel/preset-env babel-loader lodash"
+    "install": "npm install webpack webpack-cli react react-dom react-router react-router-dom react-redux redux redux-logger redux-thunk @babel/core @babel/preset-react @babel/preset-env babel-loader lodash react-toastify normalize.css"
   },
   "repository": {
     "type": "git",
