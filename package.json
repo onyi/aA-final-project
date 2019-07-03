@@ -1,7 +1,23 @@
 {
   "name": "product_hub",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  },
   "description": "A project that clone Product Hunt website.",
   "version": "1.0.0",
   "main": "index.js",
@@ -11,7 +27,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --mode=development"
+    "start": "webpack --watch --mode=development",
+    "install": "npm install webpack webpack-cli react react-dom react-router react-router-dom react-redux redux redux-logger redux-thunk @babel/core @babel/preset-react @babel/preset-env babel-loader lodash"
   },
   "repository": {
     "type": "git",
