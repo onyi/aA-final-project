@@ -4,7 +4,7 @@ import { loginUser, removeSessionErrors} from '../../actions/session_action';
 import Login from './login';
 
 const msp = state => {
-  let show = state.show || { show: true };
+  let show = state.show || true;
   let errors = state.errors.session;
   return { session: {show}, errors};
 }

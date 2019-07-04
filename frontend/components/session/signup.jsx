@@ -71,6 +71,8 @@ class Signup extends React.Component {
 
   render() {
     this.renderError();
+    console.log(`Show: ${this.props.session.show}`);
+
     return (
       <Modal show={this.props.session.show} handleClose={this.hideModal} >
         <div className="session-form">
