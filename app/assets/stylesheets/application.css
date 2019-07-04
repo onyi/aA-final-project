@@ -18,7 +18,7 @@
 
 
 
- /* The Close Button */
+ /* The Close Button in Modal*/
 .close {
   color: #aaaaaa;
   float: right;
@@ -31,4 +31,9 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+.field {
+  margin-bottom: 15px
 }

@@ -10,15 +10,21 @@
 .modal-main {
   position:fixed;
   background: white;
-  width: 80%;
+  width: 25%;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
 }
 
-.modal-main fa {
+.modal-header > span {
   float: right;
+  padding: 10px;
+}
+
+.modal-header {
+  height: 8vh;
+  padding-bottom: 2vh;
 }
 
 .display-block {

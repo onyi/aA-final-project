@@ -7,7 +7,9 @@ export const Modal = ({ handleClose, show, children }) => {
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        <span className="fa fa-times" aria-hidden="true" onClick={handleClose} />
+        <div className="modal-header">
+          <span className="fa fa-times" aria-hidden="true" onClick={handleClose} />
+        </div>
         {children}
       </section>
     </div>
