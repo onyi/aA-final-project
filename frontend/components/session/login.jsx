@@ -21,6 +21,7 @@ class Login extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.renderError = this.renderError.bind(this);
+    this.demoUserLogin = this.demoUserLogin.bind(this);
   }
 
   handleSubmit(e) { 
@@ -65,6 +66,35 @@ class Login extends React.Component {
     });
   }
 
+  async demoUserLogin(e){
+    e.preventDefault();
+
+    const demoUser = {
+      username: 'demouser',
+      password: 'demouser'
+    };
+
+    const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+    document.getElementById('username').focus();
+    for (let i = 1; i <= demoUser.username.length; i++) {
+      this.setState({ username: demoUser.username.substr(0, i) });
+      await sleep(50);
+    }
+
+    await sleep(250);
+
+    document.getElementById('password').focus();
+    for (let i = 1; i <= demoUser.password.length; i++) {
+      this.setState({ password: demoUser.password.substr(0, i) });
+      await sleep(50);
+    }
+
+    await sleep(250);
+
+    document.getElementById('signin').click();
+  }
+
   render() {
     this.renderError();
     debugger;
@@ -75,13 +105,14 @@ class Login extends React.Component {
           <div className="session-form-wrapper">
             <form onSubmit={this.handleSubmit} className="session-form-element">
               <div className="field cf">
-                <input type="text" value={this.state.username} onChange={this.update} name="username" placeholder="Username" />
+                <input type="text" value={this.state.username} onChange={this.update} name="username" id="username"  placeholder="Username" />
               </div>
               <div className="field cf">
-                <input type="password" value={this.state.password} onChange={this.update} name="password" placeholder="Password" />
+                <input type="password" value={this.state.password} onChange={this.update} name="password" id="password"placeholder="Password" />
               </div>
-              <div className="field cf">
-                <input type="submit" value="Sign In" />
+              <div className="field cf buttons">
+                <input type="submit" value="Sign In" name="signin" id="signin" className="button" />
+                <button onClick={this.demoUserLogin} className="button">Demo</button>
               </div>
             </form>
           </div>
