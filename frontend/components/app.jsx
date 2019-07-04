@@ -10,6 +10,8 @@ import {Route, Switch, Link, Redirect} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
+import { AuthRoute, ProtectedRoute } from '../util/route_utils'
+
 
 export default () => {
   return (
@@ -25,7 +27,7 @@ export default () => {
         {/* <Route path="/user" component={User}/> */}
       </Switch>
     </main>
-    <Route path="/login" component={LoginContainer} />
-    <Route path="/signup" component={SignupContainer} />
+    <AuthRoute path="/login" component={LoginContainer} />
+    <AuthRoute path="/signup" component={SignupContainer} />
   </div>
 )};
