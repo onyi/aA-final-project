@@ -12,16 +12,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 export default () => {
-  toast.configure({
-    autoClose: 5000,
-    hideProgressBar: true,
-    pauseOnHover: false,
-    position: "top-center"
-  });
   return (
   <div>
     {/* Add Navbar Container later */}
-    <ToastContainer />
+    <ToastContainer autoClose={5000} hideProgressBar={true} newestOnTop={true} position="top-center" pauseOnHover={false}/>
     <Route path="/" component={NavBarContainer} /> 
     <Route exact path="/" component={Home} />
     <Route path="/login" component={LoginContainer} />
