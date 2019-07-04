@@ -11,19 +11,22 @@ export default ({ currentUser, logoutUser}) => {
   ) : (
     <div >
       <Link to="/login" >Sign In</Link>
-      <Link to={`/signup`} >Sign Up</Link>
+      <Link to={`/signup`} id="nav-bar-signup">Sign Up</Link>
     </div>
   );
 
   return (
-    <header className="nav-bar">
-      <Link to="/">
-        <h1 className="nav-bar-logo">Product Hub</h1> 
-      </Link>
-      {/* TODO: Replace H1 with an icon image */}
-      <div className="auth-ele">
-        {display}
-      </div>
-    </header>
+    <div className="nav-bar-wrapper">
+      <header className="nav-bar">
+        <a href="/"><i className="fab fa-product-hunt nav-bar-logo"></i></a>
+        {/* <Link to="/">
+          <h1 className="nav-bar-logo"></h1>
+        </Link> */}
+        {/* TODO: Replace H1 with an icon image */}
+        <div className="auth-ele">
+          {display}
+        </div>
+      </header>
+    </div>
   )
 }
