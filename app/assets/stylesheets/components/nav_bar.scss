@@ -15,16 +15,21 @@
 
 .auth-ele a {
   background-color: white;
-  padding: 7px;
+  padding: 0.5em 0.5em;
   margin: 0 5px;
   text-decoration: none;
   color: black;
   cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
 }
+
 .auth-ele a:hover {
   background-color: rgb(65, 61, 61);
   box-shadow: 1px 1px 1px darkblue;
-  color: orange
+  color: orange;
+  text-decoration: none;
+
 }
 
 #nav-bar-signup {
