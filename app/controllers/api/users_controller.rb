@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render 'api/users/show'
     else
-      render json: @user.errors.full_messages
+      render json: @user.errors.full_messages, status: 500
     end
   end
 
@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
       @user.update_attributes(user_params)
       render :show
     else
-      render json: @user.errors.full_messages
+      render json: @user.errors.full_messages, status: 500
     end
   end
 
