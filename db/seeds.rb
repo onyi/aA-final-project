@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
+# Create demo user account
+User.create({ username: "demouser", email: "demo@user.local", password: "demouser" })
 
 20.times do 
   User.create({ username: Faker::Internet.username(6..10), email: Faker::Internet.safe_email, password: Faker::Internet.password(8, 12)})
