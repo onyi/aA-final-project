@@ -1,5 +1,7 @@
 .nav-bar-wrapper {
   background: rgba(241, 185, 82, 0.781);
+  border-bottom: 2px solid #e8e8e8;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
 }
 
 .nav-bar {
@@ -16,7 +18,8 @@
   padding: 7px;
   margin: 0 5px;
   text-decoration: none;
-  color: black
+  color: black;
+  cursor: pointer;
 }
 .auth-ele a:hover {
   background-color: rgb(65, 61, 61);
@@ -34,9 +37,19 @@
 
 }
 
+.nav-bar-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav-bar-logo {
   font-size: 30px;
   max-width: 40px;
   max-height: 40px;
-  color: rgb(194, 121, 12)
+  color: rgb(230, 158, 25)
+}
+
+.nav-bar-logo:hover{
+  color: rgb(218, 132, 4)
 }

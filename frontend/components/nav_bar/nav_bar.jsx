@@ -4,16 +4,20 @@ import {Link} from 'react-router-dom';
 
 export default ({ currentUser, logoutUser}) => {
   let display = currentUser ? (
-    <div>
-      <p>{currentUser.username}</p>
-      <button onClick={logoutUser}>Logout</button>
+    <div className="nav-bar-action">
+      <span>{currentUser.username}</span>
+      <Link to="/user"><i class="fas fa-user"></i></Link>
+      <a onClick={logoutUser}>Logout</a>
     </div>
   ) : (
-    <div >
+    <div className="nav-bar-action">
       <Link to="/login" >Sign In</Link>
       <Link to={`/signup`} id="nav-bar-signup">Sign Up</Link>
     </div>
   );
+
+
+
 
   return (
     <div className="nav-bar-wrapper">
