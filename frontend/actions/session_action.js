@@ -35,7 +35,9 @@ export const removeSessionErrors = () => {
 // implement action to handles Session API
 
 export const loginUser = (user) => dispatch => (
-  SessionApiUtil.loginUser(user).then( user => dispatch(receiveCurrentUser(user)) )
+  SessionApiUtil.loginUser(user)
+    .then( user => dispatch(receiveCurrentUser(user)) )
+    .catch(errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 );
 
 export const logoutUser = () => dispatch => (

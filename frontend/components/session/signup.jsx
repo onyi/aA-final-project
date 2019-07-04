@@ -16,7 +16,7 @@ class Signup extends React.Component {
       username: '',
       password: '',
       email: '',
-      errors: []
+      show: props.show,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -48,7 +48,8 @@ class Signup extends React.Component {
 
   update(e){
     this.setState({ [e.currentTarget.name] : e.currentTarget.value });
-    this.props.removeSessionErrors();
+    if (this.props.errors.length != 0)
+      this.props.removeSessionErrors();
   }
 
   showModal(e){

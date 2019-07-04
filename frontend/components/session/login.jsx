@@ -4,6 +4,7 @@ import { Modal } from '../../util/modal_util'
 
 import { withRouter } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
 
 
 class Login extends React.Component {
@@ -19,12 +20,12 @@ class Login extends React.Component {
     this.update = this.update.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.renderError = this.renderError.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.loginUser(this.state);
-    this.hideModal();
   }
 
   componentWillUnmount() {
@@ -34,6 +35,8 @@ class Login extends React.Component {
 
   update(e) {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+    if (this.props.errors.length != 0)
+      this.props.removeSessionErrors();
   }
 
   showModal() {
@@ -42,13 +45,21 @@ class Login extends React.Component {
 
   hideModal(e) {
     e.stopPropagation();
-    this.setState({ show: false });
+    this.setState({ session: { show: false, errors: [] } });
+    this.props.removeSessionErrors();
     this.props.history.goBack();
   }
 
+  renderError() {
+    this.props.errors.forEach(error => {
+      toast.error(error);
+    });
+  }
+
   render() {
+    this.renderError();
     return (
-      <Modal show={this.state.show} handleClose={this.hideModal} >
+      <Modal show={this.props.session.show} handleClose={this.hideModal} >
         <div className="login-form">
           <h2>This is a login form</h2>
           <div className="login-form-content">

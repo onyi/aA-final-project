@@ -6,7 +6,7 @@ import Login from './login';
 const msp = state => {
   let show = state.show || { show: true };
   let errors = state.errors.session;
-  return {show, errors};
+  return { session: {show}, errors};
 }
 
 
