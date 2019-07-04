@@ -30,12 +30,12 @@ class Signup extends React.Component {
   // }
 
   componentDidUpdate(prevProps){
-    console.log(`Component updated, ${JSON.stringify(this.state.error)}`);
+    // console.log(`Component updated, ${JSON.stringify(this.state.error)}`);
     
   }
 
   componentWillUnmount(){
-    console.log(`Component will unmount`);
+    // console.log(`Component will unmount`);
     this.props.removeSessionErrors();
 
   }
@@ -88,8 +88,8 @@ class Signup extends React.Component {
               <div className="field cf">
                 <input type="text" value={this.state.email} onChange={this.update} name="email" placeholder="Email" />
               </div>
-              <div className="field cf">
-                <input type="submit" value="Sign Up" />
+              <div className="field cf buttons">
+                <input type="submit" value="Sign Up" className="button" />
               </div>
             </form>
 

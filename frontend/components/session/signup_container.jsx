@@ -5,7 +5,7 @@ import Signup from './signup';
 
 const msp = state => {
   let errors = state.errors.session;
-  console.log(`Errors from state: ${errors}`);
+  // console.log(`Errors from state: ${errors}`);
   return { session: {show : true}, errors};
 }
 

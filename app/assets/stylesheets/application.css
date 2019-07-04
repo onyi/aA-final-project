@@ -11,38 +11,19 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize-rails
- *= require_tree .
+ *= require_tree ./css
  *= require_self
+ *= require main
  */
-
-
-
-
- /* The Close Button in Modal*/
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 
 .field {
   margin-bottom: 15px
 }
 
-
-
 .main-content {
   max-width: 1100px;
   margin: 0 auto;
   padding: 10px;
-
 }
+
+
