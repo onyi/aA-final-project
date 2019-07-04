@@ -73,34 +73,22 @@ class Signup extends React.Component {
     this.renderError();
     return (
       <Modal show={this.props.session.show} handleClose={this.hideModal} >
-        <div >
-          <h2>This is a signup form</h2>
-          <div className="signup-form-content">
-            <form onSubmit={this.handleSubmit}>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <label>Username: </label>
-                      <input type="text" value={this.state.username} onChange={this.update} name="username" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>Password: </label>
-                      <input type="password" value={this.state.password} onChange={this.update} name="password" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label>Email: </label>
-                      <input type="text" value={this.state.email} onChange={this.update} name="email" />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
+        <div className="session-form">
+          <h2>Sign Up</h2>
+          <div className="session-form-wrapper">
+            <form onSubmit={this.handleSubmit} className="session-form-element">
+              <div className="field cf">
+                <input type="text" value={this.state.username} onChange={this.update} name="username" placeholder="Username" />
+              </div>
+              <div className="field cf">
+                <input type="password" value={this.state.password} onChange={this.update} name="password" placeholder="Password" />
+              </div>
+              <div className="field cf">
+                <input type="text" value={this.state.email} onChange={this.update} name="email" placeholder="Email" />
+              </div>
+              <div className="field cf">
                 <input type="submit" value="Sign Up" />
+              </div>
             </form>
 
           </div>

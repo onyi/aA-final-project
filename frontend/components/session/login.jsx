@@ -60,15 +60,19 @@ class Login extends React.Component {
     this.renderError();
     return (
       <Modal show={this.props.session.show} handleClose={this.hideModal} >
-        <div className="login-form">
-          <h2>This is a login form</h2>
-          <div className="login-form-content">
-            <form onSubmit={this.handleSubmit}>
-              <label>Username: </label>
-              <input type="text" value={this.state.username} onChange={this.update} name="username" />
-              <label>Password: </label>
-              <input type="password" value={this.state.password} onChange={this.update} name="password" />
-              <input type="submit" value="Sign In" />
+        <div className="session-form">
+          <h2>Sign In</h2>
+          <div className="session-form-wrapper">
+            <form onSubmit={this.handleSubmit} className="session-form-element">
+              <div className="field cf">
+                <input type="text" value={this.state.username} onChange={this.update} name="username" placeholder="Username" />
+              </div>
+              <div className="field cf">
+                <input type="password" value={this.state.password} onChange={this.update} name="password" placeholder="Password" />
+              </div>
+              <div className="field cf">
+                <input type="submit" value="Sign In" />
+              </div>
             </form>
           </div>
         </div>

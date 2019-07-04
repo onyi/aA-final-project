@@ -17,7 +17,9 @@ export default ({ currentUser, logoutUser}) => {
 
   return (
     <header className="nav-bar">
-      <h1 className="nav-bar-logo">Product Hub</h1> 
+      <Link to="/">
+        <h1 className="nav-bar-logo">Product Hub</h1> 
+      </Link>
       {/* TODO: Replace H1 with an icon image */}
       <div className="auth-ele">
         {display}
