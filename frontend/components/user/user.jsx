@@ -28,6 +28,8 @@ class User extends React.Component {
 
   componentDidUpdate(){
     // this.setState(this.props.user);
+    if (this.props.errors.length != 0)
+      this.props.removeSessionErrors();
   }
 
   componentDidMount(){
@@ -43,10 +45,18 @@ class User extends React.Component {
     this.setState({ [e.currentTarget.name] : e.currentTarget.value })
   }
 
+  renderError() {
+    this.props.errors.forEach(error => {
+      toast.error(error);
+    });
+  }
+
   render(){
     const {user} = this.props;
+    this.renderError();
     return (
       <div className="user-profile-wrapper">
+        
         <h1>User Profile</h1>
         <form className="user-profile-form" onSubmit={this.handleSubmit}>
           <div className="field cf">

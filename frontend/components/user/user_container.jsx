@@ -1,5 +1,5 @@
 import User from './user';
-import { getUser, updateUser } from '../../actions/user_action';
+import { getUser, updateUser, removeUserErrors } from '../../actions/user_action';
 
 import {connect} from 'react-redux';
 
@@ -13,7 +13,8 @@ const msp = (state = {}, ownProps) => {
 
 const mdp = dispatch => ({
   getUser: (id) => dispatch(getUser(id)),
-  updateUser: (user) => dispatch(updateUser(user))
+  updateUser: (user) => dispatch(updateUser(user)),
+  removeUserErrors: () => dispatch(removeUserErrors())
 });
 
 

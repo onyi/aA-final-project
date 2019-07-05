@@ -40,6 +40,8 @@ class Login extends React.Component {
         show: this.props.session.show
       });
     }
+    if (this.props.errors.length != 0)
+      this.props.removeSessionErrors();
   }
 
   update(e) {

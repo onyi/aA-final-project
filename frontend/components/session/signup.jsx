@@ -24,7 +24,8 @@ class Signup extends React.Component {
 
   componentDidUpdate(prevProps){
     // console.log(`Component updated, ${JSON.stringify(this.state.error)}`);
-    
+    if (this.props.errors.length != 0)
+      this.props.removeSessionErrors();
   }
 
   componentWillUnmount(){
@@ -40,8 +41,7 @@ class Signup extends React.Component {
 
   update(e){
     this.setState({ [e.currentTarget.name] : e.currentTarget.value });
-    if (this.props.errors.length != 0)
-      this.props.removeSessionErrors();
+
   }
 
   showModal(e){
