@@ -3,15 +3,14 @@ import { toast } from 'react-toastify';
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 
-export const addNotification = (message) => dispatch => {
+export const addNotification = (message, id, type) => dispatch => {
   
-  let id = toast(message, {
+  toast(message, {
     pauseOnHover: false,
     autoClose: 5000,
     type: toast.TYPE.INFO,
-    onClose: (props) => {
-      console.log(JSON.stringify(props));
-      dispatch(removeNotification(props.id));
+    onClose: () => {
+      dispatch(removeNotification(id));
     } 
   });
   dispatch({
@@ -27,3 +26,4 @@ export const removeNotification = (id) => dispatch => {
     id
   })
 };
+
