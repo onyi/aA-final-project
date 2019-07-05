@@ -30,12 +30,12 @@ class Login extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log(`Component will unmount`);
+    // console.log(`Component will unmount`);
     this.props.removeSessionErrors();
   }
 
   componentDidUpdate(prevProps){
-    console.log(`componentDidUpdate Show: ${this.props.session.show}`);
+    // console.log(`componentDidUpdate Show: ${this.props.session.show}`);
     if(prevProps.session.show != this.state.show){
       this.setState({
         show: this.props.session.show
@@ -97,7 +97,6 @@ class Login extends React.Component {
 
   render() {
     this.renderError();
-    debugger;
     return (
       <Modal show={this.props.session.show} handleClose={this.hideModal} >
         <div className="session-form">
