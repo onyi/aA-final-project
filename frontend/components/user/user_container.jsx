@@ -9,7 +9,7 @@ import { addNotification } from '../../actions/notification_action'
 
 const msp = (state = {}, ownProps) => {
   let userId = ownProps.match.params.userId;
-  let user = state.entities.users[userId] || {};
+  let user = state.entities.users[userId];
   let errors = state.errors.user;
   return { userId, user, errors };
 };

@@ -62,8 +62,14 @@ class Login extends React.Component {
   }
 
   renderError() {
-    this.props.errors.forEach(error => {
-      toast.error(error);
+    this.props.errors.forEach( (error, idx) => {
+      toast(error, 
+        {
+          type: toast.TYPE.ERROR,
+          onClose: () => {
+            this.props.removeSessionErrors();
+          }
+        });
     });
   }
 

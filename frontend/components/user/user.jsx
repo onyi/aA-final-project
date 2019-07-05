@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class User extends React.Component {
 
   constructor(props){
@@ -9,7 +8,6 @@ class User extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.fetchProfileImage = this.fetchProfileImage.bind(this);
-    console.log(`In User Profile Constructor, ${JSON.stringify(this.props)}`);
   }
 
   fetchProfileImage(){
@@ -21,15 +19,19 @@ class User extends React.Component {
     // }).then( )
   }
 
-  componentWillReceiveProps(prevProps){
-    console.log(`Component receive props: ${JSON.stringify(this.props.user)}`);
-    // this.setState(this.props.user);
+  componentDidUpdate(prevProps){
+    if (this.props.errors.length != 0){
+      this.props.removeSessionErrors();
+    }
+    if(this.props.user !== prevProps.user){
+      Object.keys(this.props.user).forEach( key => {
+        this.setState({ [key]: this.props.user[key] })
+      });
+    }
   }
 
-  componentDidUpdate(){
-    // this.setState(this.props.user);
-    if (this.props.errors.length != 0)
-      this.props.removeSessionErrors();
+  componentWillMount(){
+    // this.props.getUser(this.props.userId);
   }
 
   componentDidMount(){
@@ -42,17 +44,25 @@ class User extends React.Component {
   }
 
   update(e){
+    // console.log(`User form upate ${JSON.stringify(this.state)}`);
     this.setState({ [e.currentTarget.name] : e.currentTarget.value })
   }
 
   renderError() {
-    this.props.errors.forEach(error => {
-      toast.error(error);
+    this.props.errors.forEach((error, idx) => {
+      toast(error,
+        {
+          type: toast.TYPE.ERROR,
+          onClose: () => {
+            this.props.removeSessionErrors();
+          }
+        });
     });
   }
 
   render(){
-    const {user} = this.props;
+    // console.log(`Render state: ${ JSON.stringify(this.state) }`)
+    // if (!user) return null;
     this.renderError();
     return (
       <div className="user-profile-wrapper">
@@ -69,20 +79,20 @@ class User extends React.Component {
           </div>
           <div className="field cf">
             <label>Username</label>
-            <input type="text" value={user.username} name="username" placeholder="Username" disabled />
+            <input type="text" value={this.state.username} name="username" placeholder="Username" disabled />
             
           </div>
           <div className="field cf">
             <label>Email</label>
-            <input type="text" value={user.email} name="email" placeholder="email" onChange={this.update} />
+            <input type="text" value={this.state.email} name="email" placeholder="email" onChange={this.update} />
           </div>
           <div className="field cf">
             <label>Website</label>
-            <input type="text" value={user.website} name="website" placeholder="website" onChange={this.update} />
+            <input type="text" value={this.state.website} name="website" placeholder="website" onChange={this.update} />
           </div>
           <div className="field cf">
             <label>Headline</label>
-            <input type="text" value={user.headline} name="headline" placeholder="headline" onChange={this.update} />
+            <input type="text" value={this.state.headline} name="headline" placeholder="headline" onChange={this.update} />
           </div>
           <div className="field cf buttons">
             <input type="submit" value="Update Profile" className="button" />
