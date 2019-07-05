@@ -48,6 +48,8 @@
   },
   "homepage": "https://github.com/onyi/aA-final-project#readme",
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.5.0"
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "file-loader": "^4.0.0",
+    "url-loader": "^2.0.1"
   }
 }
