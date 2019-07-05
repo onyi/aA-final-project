@@ -6,10 +6,8 @@ import { Redirect, withRouter, Route} from 'react-router-dom';
 
 const msp = state => {
   return {
-  loggedIn: Boolean(state.session.currentUser),
-  // session: {
-  //   show: true
-  // }
+    loggedIn: Boolean(state.session.currentUserId),
+
 }};
 
 const Auth = ({ path, component: Component, loggedIn, exact }) => (
