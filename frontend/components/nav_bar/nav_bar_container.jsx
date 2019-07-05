@@ -12,7 +12,8 @@ const msp = state => ({
 
 const mdp = dispatch => {
   return {
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch(logoutUser()),
+    getUser: (id) => dispatch(getUser(id)),
   }
 };
 

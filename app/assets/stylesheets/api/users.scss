@@ -3,13 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.signup-form-content {
+.user-profile-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-profile-wrapper h1 {
+  padding: 20px;
+
+}
+
+.user-profile-img{
   padding: 15px;
-  margin: 10px;
-  margin: 0 auto;
-  display: block;
-  min-width: 100px;
-  min-height: 250px;
+  margin: 20px;
+  min-width: 80px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.user-profile-img .fas {
+  font-size: 80px
 }
 
 
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+}
