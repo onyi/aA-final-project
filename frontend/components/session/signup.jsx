@@ -2,11 +2,8 @@ import React from 'react';
 
 import {Modal} from '../../util/modal_util';
 
-import {withRouter} from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
-import merge from 'lodash/merge';
-
 
 class Signup extends React.Component {
 
@@ -25,10 +22,6 @@ class Signup extends React.Component {
     this.renderError = this.renderError.bind(this);
   }
 
-  // componentDidMount(){
-  //   console.log('Component mount');
-  // }
-
   componentDidUpdate(prevProps){
     // console.log(`Component updated, ${JSON.stringify(this.state.error)}`);
     
@@ -42,8 +35,7 @@ class Signup extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let user = merge({}, this.state);
-    this.props.signupUser(user);
+    this.props.signupUser(this.state);
   }
 
   update(e){
@@ -71,8 +63,6 @@ class Signup extends React.Component {
 
   render() {
     this.renderError();
-    console.log(`Show: ${this.props.session.show}`);
-
     return (
       <Modal show={this.props.session.show} handleClose={this.hideModal} >
         <div className="session-form">
@@ -88,8 +78,9 @@ class Signup extends React.Component {
               <div className="field cf">
                 <input type="text" value={this.state.email} onChange={this.update} name="email" placeholder="Email" />
               </div>
-              <div className="field cf buttons">
+              <div className="cf buttons">
                 <input type="submit" value="Sign Up" className="button" />
+                <Link to={'/login'} replace >log in instead</Link>
               </div>
             </form>
 

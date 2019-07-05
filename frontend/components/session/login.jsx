@@ -2,10 +2,9 @@ import React from 'react';
 
 import { Modal } from '../../util/modal_util'
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
-
 
 class Login extends React.Component {
 
@@ -109,9 +108,10 @@ class Login extends React.Component {
               <div className="field cf">
                 <input type="password" value={this.state.password} onChange={this.update} name="password" id="password"placeholder="Password" />
               </div>
-              <div className="field cf buttons">
-                <input type="submit" value="Sign In" name="signin" id="signin" className="button" />
+              <div className="cf buttons">
+                <input type="submit" value="Login" name="signin" id="signin" className="button" />
                 <button onClick={this.demoUserLogin} className="button">Demo</button>
+                <Link to={'/signup'} replace >sign up instead</Link>
               </div>
             </form>
           </div>

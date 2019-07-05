@@ -16,7 +16,6 @@ export const receiveUsers = (users) => ({
 
 
 export const getUser = (id) => dispatch => {
-  console.log(`User action: ${id}`)
   return (
   UserApiUtil.getUser(id)
     .then( user => dispatch(receiveUser(user)))
