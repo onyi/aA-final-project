@@ -1,60 +1,113 @@
 {
-  entitites: {
+  entities: {
     users: {
       88: {
         id: 88,
         username: "hellothere",
-        email: "hello@world.net",
-        productIds: [1,2]
+        email: "hello@world.net"
       },
       101: {
         id: 101,
         username: "i_am_groot",
-        email: "hello@groot.starlord",
-        productIds: [1,2]
+        email: "groot@galaxy.guardian"
       }
     },
     products: {
       1: {
-        titie: "Spotify",
+        id: 1,
+        publisherId: 88,
+        title: "Spotify",
         header: "A must have app to fullfill your music need",
-        description: "Product description content should goes here... Not filling up the entire thing",
-        upvote: 123,
-        comments: [1]
-
+        description: "Sportify is a music app to allow user stream music without downloading the file. Wide selection of musics available.",
+        upvotes: 100,
       },
       2: {
-        titie: "Slack",
-        header: "Well, you know what this is already, a creativity tool",
-        description: "Product description content should goes here... Not filling up the entire thing",
-        upvote: 666,
-        comments: [2,6]
+        id: 2,
+        publisherId: 88,
+        title: "Slack",
+        header: "Be less busy. Real-time messaging, archiving & search.",
+        description: "Slack is a collaboration hub for work, and a office creativity tool to boost production. A handy real-time chat app to fit the need of various situation.",
+        upvotes: 6,
       }
     },
-    comments: {
+    productUpvotes: {
       1: {
-        body: "helloworld",
-        author: 88,
+        id: 1,
+        userId: 101,
+        productId: 1
       },
       2: {
+        id: 2,
+        userId: 101
+      }
+    },
+    productDiscussions: {
+      1: {
+        id: 1,
+        body: "hello, world!",
+        authorId: 88,
+        productId: 1,
+        upvotes: 50
+      },
+      2: {
+        id: 2,
         body: "This is a comment",
-        author: 101
+        authorId: 101,
+        productId: 1
+      },
+      3: {
+        id: 3,
+        body: "Great product! Great idea! This is an example for replying a reply",
+        authorId: 88,
+        parentCommentId: 2,
+        productId: 1
       },
       6 : {
+        id: 6,
         body: "This is a sentence, just an example",
-        author: 101
+        authorId: 101
+        productId: 1
       }
+    },
+    productDiscussionUpvotes: {
+      1: {
+        id: 1,
+        productDiscussionId: 1,
+        userId: 101
+      },
+      2: {
+        id: 2,
+        productDiscussionId: 2,
+        userId: 88
+      },
     }
   },
   ui: {
-    loading: true/false
+    loading: {
+      product: {
+        indexLoading: true/false
+      }
+    }
+  },
+  notification: {
+    56: "User has been updated successfully!"
   },
   errors: {
-    login: ["Invalid credentials!"],
-
+    session: [
+      "Invalid credentials!"
+    ],
+    user: [],
+    upvoteOwnerPost: [
+      "You cannot upvote your own product post!"
+    ],
+    productDescription: [
+      "Product description cannot be blank!"
+    ],
+    productDiscussion: [
+      "Product discussion must have content!"
+    ]
   },
   session: {
     currentUserId: 88
   }
-
 }
