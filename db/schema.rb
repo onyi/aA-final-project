@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_221738) do
+ActiveRecord::Schema.define(version: 2019_07_08_184306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "product_votes", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.index ["product_id", "user_id"], name: "index_product_votes_on_product_id_and_user_id", unique: true
+    t.index ["product_id"], name: "index_product_votes_on_product_id"
+    t.index ["user_id"], name: "index_product_votes_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "title", null: false
