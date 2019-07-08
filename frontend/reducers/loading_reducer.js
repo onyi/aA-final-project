@@ -1,11 +1,8 @@
+import { combineReducers } from 'redux';
+
+import productLoadingReducer from './product_loading_reducer'
 
 
-const loadingReducer = (state = {}, action) => {
-  Object.freeze(state);
-  switch(action.type){
-    default:
-      return state;
-  }
-};
-
-export default loadingReducer;
+export default combineReducers({
+  product: productLoadingReducer
+});

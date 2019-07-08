@@ -14,6 +14,10 @@ import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 
 import UserContainer from '../components/user/user_container';
 
+import ProducDetailContainer from '../components/product/product_detail_container';
+import ProductIndexContainer from '../components/product/product_index_container';
+
+
 export default () => {
   return (
   <div>
@@ -24,8 +28,9 @@ export default () => {
     <ToastContainer autoClose={5000} hideProgressBar={true} newestOnTop={true} position="top-center" pauseOnHover={false}/>
     <main className="main-content">
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={ProductIndexContainer} />
         <ProtectedRoute exact path="/user/:userId" component={UserContainer} />
+        <Route exact path="/product/:productId" component={ProducDetailContainer} />
       </Switch>
     </main>
     <AuthRoute path="/login" component={LoginContainer} />
