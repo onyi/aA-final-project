@@ -29,7 +29,7 @@ class ProductVote extends React.Component {
       isLoggedIn } = this.props;
 
       // console.log(`Loading: ${loading}`);
-    console.log(`isLoggedIn: ${isLoggedIn}`);
+    // console.log(`isLoggedIn: ${isLoggedIn}`);
 
     if (loading){
       return (<LoadingIcon />)
