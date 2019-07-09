@@ -6,6 +6,11 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const REMOVE_SESSION_ERRORS = 'REMOVE_SESSION_ERRORS';
 
+import { fetchAllProducts } from './product_action'
+
+
+
+
 import { receiveUser } from './user_action';
 
 const receiveCurrentUser = (user) => {
@@ -41,13 +46,17 @@ export const loginUser = (user) => dispatch => (
     .then( user => {
       dispatch(receiveCurrentUser(user));
       dispatch(receiveUser(user));
+      dispatch(fetchAllProducts());
     })
     .catch(errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 );
 
 export const logoutUser = () => dispatch => (
   SessionApiUtil.logoutUser()
-    .then( user => dispatch(logoutCurrentUser()) )
+    .then( user => {
+        dispatch(logoutCurrentUser());
+        dispatch(fetchAllProducts());
+    })
     .catch(errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 );
 
