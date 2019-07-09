@@ -3,6 +3,9 @@ import LoadingIcon from '../loading_icon';
 
 import ProductIndexItem from './product_index_item';
 
+import ProductVoteContainer from '../product_vote/product_vote_container';
+
+
 class ProductIndex extends React.Component {
 
   constructor(props){
@@ -16,22 +19,16 @@ class ProductIndex extends React.Component {
   componentDidMount(){
     // console.log(`ProductIndex`);
     this.props.getAllProducts();
-    this.setState({
-      loading: true
-    });
+
   }
 
   componentDidUpdate(){
-    if(this.props.loading != this.state.loading){
-      this.setState({
-        loading: this.props.loading
-      });
-    }
+
   }
 
   render(){
-    const { loading, products, postUpvote } = this.props;
-    console.log(`ProductIndex Render, props: ${JSON.stringify(this.props)} `);
+    const { loading, products, postUpvote, deleteUpvote } = this.props;
+    // console.log(`ProductIndex Render, props: ${JSON.stringify(this.props)} `);
     if (this.props.products.length === 0){
       return (<LoadingIcon />)
     }else{
@@ -45,7 +42,15 @@ class ProductIndex extends React.Component {
                   key={product.id} 
                   product={product} 
                   productId={product.id}
-                  postUpvote={postUpvote} /> )}
+                  postUpvote={postUpvote}
+                  deleteUpvote={deleteUpvote}
+                  ProductVoteContainer={
+                    <ProductVoteContainer
+                      productId={product.id}
+                      productVoteCount={product.upvotes}
+                      isUpvoted={product.is_upvoted}
+                    />
+                    } /> )}
           </ul>
         </div>
       )

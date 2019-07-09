@@ -6,5 +6,6 @@ if !product.header_img.include?('http')
 else
   json.header_img product.header_img
 end
-json.product_upvotes []
+json.upvotes product.upvotes.count
+json.is_upvoted (current_user && current_user.upvoted_products.map{ |p| p.product_id }.include?(product.id)) ? true : false
 json.product_discussions []

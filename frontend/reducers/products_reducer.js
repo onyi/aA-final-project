@@ -7,7 +7,6 @@ import {
   RECEIVE_PRODUCT_UPVOTE,
 } from '../actions/product_action';
 
-
 const productsReducer = (state = {}, action) => {
 
   Object.freeze(state);
@@ -17,7 +16,10 @@ const productsReducer = (state = {}, action) => {
     case RECEIVE_SINGLE_PRODUCT:
       return merge({}, state, {[action.product.id] : action.product });
     case RECEIVE_PRODUCT_UPVOTE:
-      return merge({}, state, {[action.product.id] : action.product });
+      const product = state[action.productId];
+      product.upvotes = action.upvoteCount;
+      product.is_upvoted = action.isUpvoted;
+      return merge({}, state, { [action.productId]: product });
     default: 
       return state;
   }

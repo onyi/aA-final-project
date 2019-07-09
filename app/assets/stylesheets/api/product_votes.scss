@@ -1,0 +1,63 @@
+// Place all the styles related to the api/ProductVotes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.product-vote-button {
+  width: 4vw;
+  height: 10vh;
+  :focus{
+    outline: none;
+  }
+}
+
+
+.product-upvote-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding-left: 70px;
+}
+
+.product-upvote {
+  width: 100%;
+  height: 100%;
+  i {
+    font-size: 1.2em;
+  }
+}
+
+.product-upvote:hover {
+  display: inline-block;
+  position: relative
+}
+
+.product-upvote-isupvoted {
+  border: 1px $orange-accent solid;
+  i {
+    color: $orange-accent
+  }
+}
+.product-upvote-isupvoted:hover {
+  border: 1px $gray solid;
+  color: $dark-gray;
+  i {
+    color: $dark-gray;
+  }
+  > p {
+  text-decoration: line-through;
+  }
+}
+
+.product-upvote-notupvoted {
+  border: 1px $lightest-gray solid;
+}
+.product-upvote-notupvoted:hover {
+  background-color: $orange-button-hover;
+  i {
+    color: $orange-accent;
+    // font-size: 1.5em;
+  }
+
+}

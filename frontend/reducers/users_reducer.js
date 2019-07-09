@@ -3,6 +3,8 @@ import {
   RECEIVE_USERS
 } from '../actions/user_action';
 
+import { RECEIVE_PRODUCT_UPVOTE } from '../actions/product_action';
+
 import merge from 'lodash/merge';
 
 
@@ -13,6 +15,10 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_USERS:
       return merge({}, users)
+    case RECEIVE_PRODUCT_UPVOTE:
+      const user = state[action.userId];
+      user.upvoted_products = action.upvotedProducts;
+      return merge({}, state, { [action.userId] : user });
     default:
       return state;
   }

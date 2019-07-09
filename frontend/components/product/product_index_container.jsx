@@ -23,8 +23,7 @@ const msp = (state = {}, ownProps) => {
 const mdp = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   getProduct: (id) => dispatch(fetchProduct(id)),
-  postUpvote: (id) => dispatch(createUpvote(id)),
-  deleteUpvote: (id) => dispatch(deleteUpvote(id)),
+
 });
 
 export default connect(msp, mdp)(ProductIndex)

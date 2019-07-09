@@ -17,6 +17,16 @@ class Product < ApplicationRecord
 
   validates :title, :header, :publisher_id, :header_img, :link, presence: true
 
+  has_many :upvotes,
+    class_name: :ProductVote
 
+  has_many :upvoters,
+    through: :upvotes,
+    source: :user
+
+  belongs_to :publisher,
+    foreign_key: :publisher_id,
+    class_name: :User
+    
 
 end

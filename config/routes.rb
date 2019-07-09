@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:create, :update, :show, :index]
     resources :products, only: [:index, :show, :update, :create]
+    resources :product_votes, only: [:create, :destroy]
   end
 
 

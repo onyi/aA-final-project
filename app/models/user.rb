@@ -25,6 +25,12 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :upvoted_products,
+    class_name: :ProductVote
+
+  has_many :published_products,
+    foreign_key: :publisher_id,
+    class_name: :Product
 
   attr_reader :password
 

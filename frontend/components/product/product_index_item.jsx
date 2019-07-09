@@ -2,7 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const ProductIndexItem = ({product, isUpvoted, postUpvote, deleteUpvote}) => {
+import ProductVoteContainer from '../product_vote/product_vote_container';
+
+const ProductIndexItem = ({ product}) => {
   return (
     <li>
       <div className="product-list-container">
@@ -13,16 +15,18 @@ const ProductIndexItem = ({product, isUpvoted, postUpvote, deleteUpvote}) => {
           <div className="product-info">
             <h3>{product.title}</h3>
             <p>{product.header}</p>
+            {/* Reserved for Product Comment component */}
+            <i className="fas fa-comments"></i>
           </div>
         </Link>
         <div className="product-upvote-container">
           {/* Reserved for Product Upvote component */}
-          <button className="product-upvote" onClick={isUpvoted ? deleteUpvote : postUpvote} >
-            <i className="fas fa-caret-up"></i>
-          </button>
-        </div>
-        <div>
-          {/* Reserved for Product Comment component */}
+          <ProductVoteContainer 
+            productId={product.id}
+            productVoteCount={product.upvotes}
+            isUpvoted={product.is_upvoted}
+            />
+            {/* {ProductVoteContainer} */}
         </div>
 
       </div>
