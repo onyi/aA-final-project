@@ -1,6 +1,8 @@
 import React from 'react';
 import LoadingIcon from '../loading_icon';
 
+import { Redirect, withRouter, Link } from 'react-router-dom'
+
 
 class ProductVote extends React.Component {
   constructor(props){
@@ -23,18 +25,32 @@ class ProductVote extends React.Component {
       deleteUpvote, 
       isUpvoted, 
       productId,
-      loading } = this.props;
+      loading,
+      isLoggedIn } = this.props;
 
       // console.log(`Loading: ${loading}`);
+    console.log(`isLoggedIn: ${isLoggedIn}`);
 
     if (loading){
       return (<LoadingIcon />)
+    }
+    else if (!isLoggedIn){
+      return (
+        <Link to="/login" >
+          <i className="fas fa-caret-up"></i>
+          {/* {isUpvoted ? <p> Cancel Upvote </p> : <p> Submit Upvote </p>} */}
+          <p>{productVoteCount}</p>
+        </Link>
+      )
     }
     else{
       return (
         <div className="product-vote-button">
           <button className={`product-upvote ${isUpvoted ? "product-upvote-isupvoted" : "product-upvote-notupvoted"}`}
-            onClick={() => isUpvoted ? deleteUpvote(productId) : postUpvote(productId)} >
+            onClick={
+              () => { 
+                isUpvoted ? deleteUpvote(productId) : postUpvote(productId) 
+              }} >
             <i className="fas fa-caret-up"></i>
             {/* {isUpvoted ? <p> Cancel Upvote </p> : <p> Submit Upvote </p>} */}
             <p>{productVoteCount}</p>
@@ -46,4 +62,4 @@ class ProductVote extends React.Component {
 }
 
 
-export default ProductVote;
+export default withRouter(ProductVote);
