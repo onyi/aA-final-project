@@ -44,13 +44,8 @@ class ProductIndex extends React.Component {
                   productId={product.id}
                   postUpvote={postUpvote}
                   deleteUpvote={deleteUpvote}
-                  ProductVoteContainer={
-                    <ProductVoteContainer
-                      productId={product.id}
-                      productVoteCount={product.upvotes}
-                      isUpvoted={product.is_upvoted}
-                    />
-                    } /> )}
+                /> 
+            )}
           </ul>
         </div>
       )

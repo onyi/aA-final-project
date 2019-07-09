@@ -36,10 +36,12 @@ class ProductVote extends React.Component {
     }
     else if (!isLoggedIn){
       return (
-        <Link to="/login" >
-          <i className="fas fa-caret-up"></i>
-          {/* {isUpvoted ? <p> Cancel Upvote </p> : <p> Submit Upvote </p>} */}
-          <p>{productVoteCount}</p>
+        <Link to="/login" className="product-vote-button" >
+          <button className={`product-upvote ${isUpvoted ? "product-upvote-isupvoted" : "product-upvote-notupvoted"}`}>
+            <i className="fas fa-caret-up"></i>
+            {/* {isUpvoted ? <p> Cancel Upvote </p> : <p> Submit Upvote </p>} */ }
+            <p>{productVoteCount}</p>
+          </button >
         </Link>
       )
     }

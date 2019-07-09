@@ -71,11 +71,13 @@ class ProductDetail extends React.Component {
 
               </section>
               <section className="product-detail-main-right">
-                <ProductVoteContainer
-                  productId={product.id}
-                  productVoteCount={product.upvotes}
-                  isUpvoted={product.is_upvoted}
-                /> 
+                <div className="product-upvote-container product-upvote-detail" >
+                  <ProductVoteContainer
+                    productId={product.id}
+                    productVoteCount={product.upvotes}
+                    isUpvoted={product.is_upvoted}
+                  /> 
+                </div>
                 <a href={product.link} className="product-link">
                   <div>
                     <i className="fas fa-compass"></i>

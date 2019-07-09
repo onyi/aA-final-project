@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import ProductVoteContainer from '../product_vote/product_vote_container';
 
-const ProductIndexItem = ({ product}) => {
+const ProductIndexItem = ({ product }) => {
   return (
     <li>
       <div className="product-list-container">
@@ -26,7 +26,6 @@ const ProductIndexItem = ({ product}) => {
             productVoteCount={product.upvotes}
             isUpvoted={product.is_upvoted}
             />
-            {/* {ProductVoteContainer} */}
         </div>
 
       </div>
