@@ -9,7 +9,6 @@ import ProductVoteContainer from '../product_vote/product_vote_container';
 class ProductDetail extends React.Component {
 
   constructor(props){
-    console.log(`ProductDetail`);
     super(props);
     this.state = {
       product: props.product,
@@ -36,7 +35,6 @@ class ProductDetail extends React.Component {
   }
 
   hideModal(e) {
-    console.log(`hideModal`);
     e.stopPropagation();
     this.setState({ show: false, errors: [] });
     this.props.history.goBack();

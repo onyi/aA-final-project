@@ -9,8 +9,8 @@ class ProductVote extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(`componentDidUpdate prevProps: ${JSON.stringify(prevProps)}`);
-    console.log(`componentDidUpdate Props: ${JSON.stringify(prevProps)}`);
+    // console.log(`componentDidUpdate prevProps: ${JSON.stringify(prevProps)}`);
+    // console.log(`componentDidUpdate Props: ${JSON.stringify(prevProps)}`);
 
     // this.setState({
     //   isUpvoted: this.props.isUpvoted

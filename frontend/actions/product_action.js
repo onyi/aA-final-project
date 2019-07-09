@@ -72,7 +72,6 @@ export const fetchProduct = (id) => dispatch => {
   };
 
 export const createUpvote = (productId) => dispatch => {
-  console.log(`createUpvote productId: ${productId}`);
   dispatch(startLoadingUpvote(productId));
   return ProductVoteApiUtil.postUpvote(productId)
     .then( productVote => {
@@ -91,11 +90,9 @@ export const createUpvote = (productId) => dispatch => {
 };
 
 export const deleteUpvote = (productId) => dispatch => {
-  console.log(`deleteUpvote productId: ${productId}`);
   dispatch(startLoadingUpvote(productId));
   return ProductVoteApiUtil.deleteUpvote(productId)
     .then( productVote => {
-      // console.log(JSON.stringify(productVote))
       dispatch(
         receiveProductUpvote(
           productVote.upvotes,

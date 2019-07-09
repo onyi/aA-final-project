@@ -22,10 +22,8 @@ const productLoadingReducer = (state = {}, action) => {
     case FINISH_LOADING_PRODUCT:
       return merge({}, state, { detailLoading: false });
     case START_LOADING_UPVOTE:
-      console.log(`action.productId: ${action.productId}`);
       return merge({}, state, { upvoteLoading: { [action.productId] : true} });
     case FINISH_LOADING_UPVOTE:
-      console.log(`action.productId: ${action.productId}`);
       return merge({}, state, { upvoteLoading: { [action.productId] : false } });
     default:
       return state;
