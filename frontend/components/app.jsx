@@ -5,7 +5,7 @@ import SignupContainer from './session/signup_container';
 import Home from './home/home';
 import NavBarContainer from './nav_bar/nav_bar_container';
 
-import {Route, Switch, Link, Redirect} from 'react-router-dom';
+import {Route, Switch, Link, Redirect } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -31,6 +31,7 @@ export default () => {
         <Route exact path="/" component={ProductIndexContainer} />
         <ProtectedRoute exact path="/user/:userId" component={UserContainer} />
         <Route exact path="/product/:productId" component={ProducDetailContainer} />
+        <Route component={ProductIndexContainer}/>
       </Switch>
     </main>
     <AuthRoute path="/login" component={LoginContainer} />
