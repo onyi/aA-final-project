@@ -14,6 +14,8 @@ export const RECEIVE_PRODUCT_UPVOTE = 'RECEIVE_PRODUCT_UPVOTE';
 
 import * as ProductApiUtil from '../util/product_api_util';
 
+import * as ProductVoteApiUtil from '../util/product_vote_api_util';
+
 export const receiveProducts = (products) => ({
   type: RECEIVE_PRODUCTS,
   products
@@ -24,9 +26,23 @@ export const receiveSingleProduct = (product) => ({
   product
 });
 
-export const receiveProductUpvote = (upvoteCount) => ({
+export const startLoadingUpvote = (productId) => ({
+  type: START_LOADING_UPVOTE,
+  productId
+});
+
+export const finishLoadingUpvote = (productId) => ({
+  type: FINISH_LOADING_UPVOTE,
+  productId
+});
+
+export const receiveProductUpvote = (upvoteCount, productId, userId, upvotedProducts, isUpvoted) => ({
   type: RECEIVE_PRODUCT_UPVOTE,
-  upvoteCount
+  upvoteCount,
+  productId,
+  userId,
+  upvotedProducts,
+  isUpvoted
 });
 
 export const receiveProductErrors = (errors) => ({
@@ -55,22 +71,41 @@ export const fetchProduct = (id) => dispatch => {
     // .always(dispatch({ type: FINISH_LOADING_PRODUCT })
   };
 
-export const createUpvote = (id) => dispatch => {
-  dispatch({ type: START_LOADING_UPVOTE });
-  return ProductApiUtil.postUpvote(id)
-    .then( upvoteCount => {
-      dispatch(receiveProductUpvote(upvoteCount))
+export const createUpvote = (productId) => dispatch => {
+  console.log(`createUpvote productId: ${productId}`);
+  dispatch(startLoadingUpvote(productId));
+  return ProductVoteApiUtil.postUpvote(productId)
+    .then( productVote => {
+      dispatch(
+        receiveProductUpvote(
+          productVote.upvotes,
+          productVote.product_id,
+          productVote.user_id,
+          productVote.upvoted_products,
+          productVote.is_upvoted
+        )
+      );
+      dispatch(finishLoadingUpvote(productId));
     })
     .catch( errors => dispatch(receiveProductErrors(errors)))
-    .always(dispatch({ type : FINISH_LOADING_UPVOTE }))
 };
 
-export const deleteUpvote = (id) => dispatch => {
-  dispatch({ type: START_LOADING_UPVOTE });
-  return ProductApiUtil.deleteUpvote(id)
-    .then( upvoteCount => {
-      dispatch(receiveProductUpvote(upvoteCount))
+export const deleteUpvote = (productId) => dispatch => {
+  console.log(`deleteUpvote productId: ${productId}`);
+  dispatch(startLoadingUpvote(productId));
+  return ProductVoteApiUtil.deleteUpvote(productId)
+    .then( productVote => {
+      // console.log(JSON.stringify(productVote))
+      dispatch(
+        receiveProductUpvote(
+          productVote.upvotes,
+          productVote.product_id,
+          productVote.user_id,
+          productVote.upvoted_products,
+          productVote.is_upvoted
+        )
+      );
+      dispatch(finishLoadingUpvote(productId));
     })
     .catch( errors => dispatch(receiveProductErrors(errors)))
-    .always(dispatch({ type : FINISH_LOADING_UPVOTE }))
 };
