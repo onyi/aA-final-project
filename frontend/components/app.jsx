@@ -17,6 +17,8 @@ import UserContainer from '../components/user/user_container';
 import ProducDetailContainer from '../components/product/product_detail_container';
 import ProductIndexContainer from '../components/product/product_index_container';
 
+import ProductFormContainer from '../components/product/product_form_container';
+
 
 export default () => {
   return (
@@ -30,6 +32,7 @@ export default () => {
       <Switch>
         <Route exact path="/" component={ProductIndexContainer} />
         <ProtectedRoute exact path="/user/:userId" component={UserContainer} />
+        <ProtectedRoute exact path="/product/create" component={ProductFormContainer} />
         <Route exact path="/product/:productId" component={ProducDetailContainer} />
         <Route component={ProductIndexContainer}/>
       </Switch>
