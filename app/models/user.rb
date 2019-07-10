@@ -34,6 +34,8 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_one_attached :photo
+
 
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
@@ -41,7 +43,11 @@ class User < ApplicationRecord
   end
 
   def password=(password)
-    self.password_digest = BCrypt::Password.create(password)
+    if password.nil? || password == ''
+      self.password_digest = ''
+    else
+      self.password_digest = BCrypt::Password.create(password)
+    end
   end
 
   def is_password?(password)
