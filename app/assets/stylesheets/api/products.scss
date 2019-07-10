@@ -120,3 +120,50 @@
 .product-link, .product-link:hover {
   text-decoration: none;
 }
+
+
+
+
+
+input.product-field {
+	margin: 10px;
+	padding: 2px;
+}
+
+label.product-field {
+	width: 125px;
+	display: inline-block;
+}
+
+.new-product-button {
+  margin: 5px;
+}
+
+input.new-product-button {
+  width: 160px;
+  margin-top: 10px;
+}
+
+button.new-product-button {
+  width: 160px;
+}
+
+.product-form-wrapper {
+  max-width: 30vw;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.product-form {
+  padding: 10px;
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+  max-height: inherit;
+  max-width: inherit;
+}
+
+.product-preview-img {
+  width: 80px;
+  height: 80px;
+}

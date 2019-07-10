@@ -44,7 +44,7 @@ class ProductDetail extends React.Component {
     const {product} = this.props;
     if (!product){
       return (<Modal><LoadingIcon /></Modal>)
-    }else{
+    } else{
       return (
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <div className="product-detail-wrapper">
