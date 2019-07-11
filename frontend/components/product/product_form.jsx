@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal} from '../../util/modal_util';
 import {Link, Redirect} from 'react-router-dom';
+import Loading from '../../components/loading_icon';
 
 class ProductForm extends React.Component {
   constructor(props){
@@ -10,20 +11,9 @@ class ProductForm extends React.Component {
     this.update = this.update.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
-    this.state = 
-      { product: this.props.product ? this.props.product :
-        {
-          title: '',
-          description: '',
-          header: '',
-          link: '',
-          header_img: '',
-          publisher_id: props.currentUserId,
-        },
-        show: true
-      };
+    this.state = { product: this.props.product };
   }
-
+      
   handleFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -31,7 +21,6 @@ class ProductForm extends React.Component {
       // console.log(`file reader on load ended: ${JSON.stringify(e)}`);
       // console.log(`file: ${JSON.stringify(file)}`);
       let product = this.state.product;
-      product["header_img"] = fileReader.result;
       product["header_img"] = fileReader.result;
 
       // product["photo"] = fileReader.result;
@@ -49,24 +38,13 @@ class ProductForm extends React.Component {
     e.stopPropagation();
     e.preventDefault();
 
-    console.log(`Current State: ${JSON.stringify(this.state)}`);
-    const formData = new FormData();
-    formData.append('product[title]', this.state.product.title);
-    formData.append('product[header]', this.state.product.header);
-    formData.append('product[link]', this.state.product.link);
-    formData.append('product[description]', this.state.product.description);
-    formData.append('product[header_img]', this.state.product.header_img);
-    if(this.state.productId){
-      formData.append('product[id]', this.state.product.id);
-    }
-    
     this.props.productId ? 
-      this.props.updateProduct(formData) : 
-      this.props.createProduct(formData);
+      this.props.updateProduct(this.state.product) : 
+      this.props.createProduct(this.state.product);
   }
 
   update(e){
-    let product = this.state.product;
+    let product = this.state.product || {};
     product[e.currentTarget.name] = e.target.value;
     this.setState({
       product: product
@@ -75,12 +53,14 @@ class ProductForm extends React.Component {
 
   componentDidUpdate(prevProps){
     // console.log(`this.props: ${JSON.stringify(this.props)}`);
-    if (prevProps.products.show && prevProps.products.show != this.props.products.show) {
-      this.setState({
-        show: this.props.products.show
-      });
+    if (prevProps.show !== this.props.products.show && !this.props.products.show){
+      this.props.history.goBack();
     }
 
+  }
+
+  componentDidMount(){
+    this.props.openProductForm();
   }
 
   showModal() {
@@ -90,6 +70,7 @@ class ProductForm extends React.Component {
   hideModal(e) {
     e.stopPropagation();
     this.setState({ show: false, errors: [] });
+    // this.props.closeProductForm();
     this.props.history.goBack();
   }
 
@@ -99,17 +80,20 @@ class ProductForm extends React.Component {
     const preview = header_img ? 
       <img className="product-preview-img" src={header_img}></img> : null;
 
-    // if (this.props.productId){
+    let buttonText = "Create Product";
+    let formTitle = "Create New Product Post";
+    if(this.props.productId){
+      buttonText = "Update Product";
+      formTitle = "Update Product Post";
+    }
 
-    // }else{
-
-    // }
 
     return (
 
       <Modal show={this.props.products.show} handleClose={this.hideModal}>
+        { this.props.loading ? <Loading /> : null }
         <div className="product-form-container">
-          <h1>Create New Product Post</h1>
+          <h1>{formTitle}</h1>
           <div className="product-form-wrapper">
             <form onSubmit={this.handleSubmit} className="product-form">
 
@@ -137,7 +121,7 @@ class ProductForm extends React.Component {
               <hr />
 
               <div className="button-holder">
-                <input type="submit" value="Create Product" className="new-product-button" />
+                <input type="submit" value={buttonText} className="new-product-button" />
               </div>
               <div className="button-holder">
                 <Link to="/">
