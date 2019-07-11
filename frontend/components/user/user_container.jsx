@@ -7,15 +7,15 @@ import {withRouter} from 'react-router-dom';
 
 import { addNotification } from '../../actions/notification_action'
 
-import { fetchProductsByPublisher, updateProduct } from '../../actions/product_action';
+import { fetchProductsByPublisher } from '../../actions/product_action';
 
 const msp = (state = {}, ownProps) => {
   let userId = ownProps.match.params.userId;
-  let user = state.entities.users[userId];
+  let user = state.entities.users[userId] || {};
   let errors = state.errors.user;
   let products = Object.values(state.entities.products);
   let loading = state.ui.loading.product.publishedProductLoading
-  return { userId, user, errors, products };
+  return { userId, user, errors, products, loading };
 };
 
 const mdp = dispatch => ({
