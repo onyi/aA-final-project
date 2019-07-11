@@ -100,3 +100,30 @@
 #   })
 # end
 
+
+
+# Seed Product Discussion
+user_ids = User.all.map{ |u| u.id }
+product_ids = Product.all.map{ |p| p.id }
+
+15.times do
+  ProductDiscussion.create({
+    author_id: user_ids.sample,
+    product_id: product_ids.sample,
+    body: Faker::Company.bs
+  })
+end
+
+# Randomly creates subdiscussion
+
+discussions = ProductDiscussion.all
+
+10.times do 
+    discussion = discussions.sample
+    ProductDiscussion.create({
+    author_id: user_ids.sample,
+    product_id: discussion.product_id,
+    parent_discussion_id: discussion.id,
+    body: Faker::Hipster.sentence
+  })
+end
