@@ -129,8 +129,8 @@ export const createUpvote = (productId) => dispatch => {
           productVote.upvotes,
           productVote.product_id,
           productVote.user_id,
-          productVote.upvoted_products,
-          productVote.is_upvoted
+          productVote.upvotedProducts,
+          productVote.isUpvoted
         )
       );
       dispatch(finishLoadingUpvote(productId));
@@ -147,8 +147,8 @@ export const deleteUpvote = (productId) => dispatch => {
           productVote.upvotes,
           productVote.product_id,
           productVote.user_id,
-          productVote.upvoted_products,
-          productVote.is_upvoted
+          productVote.upvotedProducts,
+          productVote.isUpvoted
         )
       );
       dispatch(finishLoadingUpvote(productId));
