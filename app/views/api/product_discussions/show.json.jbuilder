@@ -1,0 +1,1 @@
+json.partial! '/api/product_discussions/discussion', discussion: @product_discussion

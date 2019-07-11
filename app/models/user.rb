@@ -32,6 +32,11 @@ class User < ApplicationRecord
     foreign_key: :publisher_id,
     class_name: :Product
 
+  has_many :discussions,
+    foreign_key: :author_id,
+    class_name: :ProductDiscussion
+
+
   attr_reader :password
 
   has_one_attached :photo

@@ -2,11 +2,11 @@ class Api::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.publisher_id = current_user.id
     if @product.save
       render 'api/products/show'
     else
       render json: @product.errors.full_messages, status: 500
-
     end
   end
 
@@ -29,6 +29,8 @@ class Api::ProductsController < ApplicationController
   def index
     if params[:search_keyword]
       @products = Product.where("title like ?", "%#{params[:search_keyword]}%")
+    elsif params[:publisher_id]
+      @products = Product.where("publisher_id = ?", "#{params[:publisher_id]}")
     else
       @products = Product.all
       # sleep(5) # Debug loading icon
@@ -39,7 +41,7 @@ class Api::ProductsController < ApplicationController
   private 
 
   def product_params
-    params.require(:product).permit(:title, :header, :header_img, :link, :publisher_id, :description)
+    params.require(:product).permit(:title, :header, :header_img, :link, :description, :photo)
   end
 
 

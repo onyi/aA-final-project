@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: product_votes
+#
+#  id         :bigint           not null, primary key
+#  product_id :integer          not null
+#  user_id    :integer          not null
+#
+
 class ProductVote < ApplicationRecord
   validates :product_id, :user_id, presence: true
 

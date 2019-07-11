@@ -28,5 +28,10 @@ class Product < ApplicationRecord
     foreign_key: :publisher_id,
     class_name: :User
     
+  has_many :discussions,
+    foreign_key: :product_id,
+    class_name: :ProductDiscussion
+
+  has_one_attached :photo
 
 end
