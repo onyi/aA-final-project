@@ -56,6 +56,20 @@ export const closeProductForm = () => ({
 export const openProductForm = () => ({
   type: OPEN_PRODUCT_FORM
 });
+export const startCreatingProduct = () => ({
+  type: START_CREATING_PRODUCT
+});
+export const finishCreatingProduct = () => ({
+  type: FINISH_CREATING_PRODUCT
+});
+export const startUpdatingProduct = () => ({
+  type: START_UPDATING_PRODUCT
+});
+export const finishUpdatingProduct = () => ({
+  type: FINISH_UPDATING_PRODUCT
+});
+
+
 
 
 export const receiveProductUpvote = (upvoteCount, productId, userId, upvotedProducts, isUpvoted) => ({
@@ -63,7 +77,8 @@ export const receiveProductUpvote = (upvoteCount, productId, userId, upvotedProd
   upvoteCount,
   productId,
   userId,
-  upvotedProducts,
+  upvotedProducts, 
+  updateProduct,
   isUpvoted
 });
 
@@ -146,12 +161,13 @@ const randomNumber = (length) => {
 }
 
 export const createProduct = (product) => dispatch => {
-  dispatch(openProductForm());
+  dispatch(startCreatingProduct());
   return ProductApiUtil.postProduct(product)
     .then( product => {
       // console.log(`Response product: ${JSON.stringify(product)} `)
       dispatch(receiveSingleProduct(product));
       dispatch(addNotification("Created product successfully!", randomNumber(4) ));
+      dispatch(finishCreatingProduct());
       dispatch(closeProductForm());
     })
     .catch( errors => {
@@ -163,19 +179,20 @@ export const createProduct = (product) => dispatch => {
       //   dispatch(renderError(error), randomNumber(5))
       // }
       // );
-      dispatch(renderError(errorMsg), randomNumber(5));
+      dispatch(renderError(errorMsg, randomNumber(5)));
     })
 };
 export const updateProduct = (product) => dispatch => {
-  dispatch(openProductForm());
+  dispatch(startUpdatingProduct());
   return ProductApiUtil.updateProduct(product)
     .then( product => {
       dispatch(receiveSingleProduct(product));
       dispatch(addNotification("Update product successfully!", randomNumber(4) ));
+      dispatch(finishUpdatingProduct());
       dispatch(closeProductForm());
     })
     .catch( errors => {
       let errorMsg = errors.responseJSON;
-      dispatch(renderError(errorMsg), randomNumber(5));
+      dispatch(renderError(errorMsg, randomNumber(5)));
     })
 };
