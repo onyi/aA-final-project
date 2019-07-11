@@ -21,10 +21,22 @@ export const fetchProductByPublisher = (publisher_id) => {
 
 export const postProduct = (product) => {
   console.log(`post product: ${JSON.stringify(product)}`);
+
+  let formData = createProductForm(product);
+  // const formData = new FormData();
+  // formData.append('product[title]', product.title);
+  // formData.append('product[header]', product.header);
+  // formData.append('product[link]', product.link);
+  // formData.append('product[description]', product.description);
+  // formData.append('product[header_img]', product.header_img);
+  // if (product.id) {
+  //   formData.append('product[id]', product.id);
+  // }
+
   return $.ajax({
     url: `api/products`,
     method: 'POST',
-    data: product,
+    data: formData,
     contentType: false,
     processData: false
   })
@@ -32,11 +44,28 @@ export const postProduct = (product) => {
 
 export const updateProduct = (product) => {
   console.log(`update product: ${JSON.stringify(product)}`);
+
+  let formData = createProductForm(product);
+
   return $.ajax({
     url: `api/products/${product.id}`,
     method: 'PATCH',
-    data: product,
+    data: formData,
     contentType: false,
     processData: false
   })
+}
+
+const createProductForm = (product) => {
+  const formData = new FormData();
+  formData.append('product[title]', product.title);
+  formData.append('product[header]', product.header);
+  formData.append('product[link]', product.link);
+  formData.append('product[description]', product.description);
+  formData.append('product[header_img]', product.header_img);
+  if (product.id){
+    formData.append('product[id]', product.id);
+  }
+
+  return formData;
 }
