@@ -18,7 +18,7 @@ export default( state = {}, action) => {
   Object.freeze(state);
   switch(action.type){
     case RECEIVE_PRODUCT_ERRORS:
-      console.log(`Receive Error Reducer: ${JSON.stringify(action.errors)}`);
+      // console.log(`Receive Error Reducer: ${JSON.stringify(action.errors)}`);
       // let id = action.id ? action.id : randomNumber(8);
       return merge({}, [...action.errors]);
     case CLEAR_PRODUCT_ERRORS:
