@@ -17,7 +17,7 @@ const usersReducer = (state = {}, action) => {
       return merge({}, users)
     case RECEIVE_PRODUCT_UPVOTE:
       const user = state[action.userId];
-      user.upvoted_products = action.upvotedProducts;
+      user.upvotedProducts = action.upvotedProducts;
       return merge({}, state, { [action.userId] : user });
     default:
       return state;

@@ -30,7 +30,7 @@
           username: '<%= current_user.username %>',
           id: '<%= current_user.id %>',
           email: '<%= current_user.email %>',
-          upvoted_products: <%= current_user.upvoted_products.map{ |p| p.product_id } %>
+          upvotedProducts: <%= current_user.upvoted_products.map{ |p| p.product_id } %>
         }
       </script>
     <% end %>
