@@ -11,7 +11,7 @@ class Api::ProductsController < ApplicationController
   end
 
   def update
-    @product = current_user.products.find_by(:id, params[id]) # Only find product created by current user
+    @product = current_user.published_products.find_by(id: params[:product][:id]) # Only find product created by current user
     if @product.nil?
       render json: ["Cannot update other user's product post!"], status: 403
     end

@@ -6,7 +6,10 @@ export const SHOW_ERROR = 'SHOW_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 
 export const renderError = (errorMsg, id) => dispatch => {
-  if (errorMsg.constructor !== Array){
+  if(!errorMsg){
+    errorMsg = ["Error occurred..."];
+  }
+  else if (errorMsg.constructor !== Array){
     errorMsg = [errorMsg]
   }
   errorMsg.forEach(
