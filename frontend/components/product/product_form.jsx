@@ -115,7 +115,7 @@ class ProductForm extends React.Component {
                 <h3>Image Preview</h3>
                 {preview}
                 <h3>Add Header Image</h3>
-                <input type="file" className="new-product-button" name="header_img" onChange={this.handleFile.bind(this)}/>
+                <input type="file" className="add-image-button" name="header_img" onChange={this.handleFile.bind(this)}/>
               </div>
 
               <hr />

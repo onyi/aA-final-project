@@ -29,3 +29,10 @@
 }
 
 
+.add-image-button{
+  padding: 10px 0;
+}
+
+input.add-image-button {
+  width: 100%;
+}

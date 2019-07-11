@@ -31,8 +31,13 @@ html {
 .button-holder {
    display: flex;
    align-items: center;
-   flex-direction: column;
+	 flex-direction: column;
+	 h3,h2,h1 {
+		padding: 10px 0;
+	 }
 }
+
+
 
 a:hover {
 	text-decoration: underline;
