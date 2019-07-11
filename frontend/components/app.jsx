@@ -33,6 +33,7 @@ export default () => {
         <Route exact path="/" component={ProductIndexContainer} />
         <ProtectedRoute exact path="/user/:userId" component={UserContainer} />
         <ProtectedRoute exact path="/product/create" component={ProductFormContainer} />
+        <ProtectedRoute exact path="/product/edit/:productId" component={ProductFormContainer} />
         <Route exact path="/product/:productId" component={ProducDetailContainer} />
         <Route component={ProductIndexContainer}/>
       </Switch>

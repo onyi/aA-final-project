@@ -1,20 +1,29 @@
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
+export const RECEIVE_PUBLISHER_PRODUCTS = 'RECEIVE_PUBLISHER_PRODUCTS';
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT';
 
 export const RECEIVE_PRODUCT_ERRORS = 'RECEIVE_PRODUCT_ERRORS';
 export const CLEAR_PRODUCT_ERRORS = 'CLEAR_PRODUCT_ERRORS';
 
 export const START_LOADING_ALL_PRODUCTS = 'START_LOADING_ALL_PRODUCTS';
+export const START_LOADING_PUBLISHER_PRODUCTS = 'START_LOADING_PUBLISHER_PRODUCTS';
 export const START_LOADING_PRODUCT = 'START_LOADING_PRODUCT';
 export const FINISH_LOADING_ALL_PRODUCTS = 'FINISH_LOADING_ALL_PRODUCTS';
+export const FINISH_LOADING_PUBLISHER_PRODUCTS = 'FINISH_LOADING_PUBLISHER_PRODUCTS';
 export const FINISH_LOADING_PRODUCT = 'FINISH_LOADING_PRODUCT';
 
 export const START_LOADING_UPVOTE = 'START_LOADING_UPVOTE';
 export const FINISH_LOADING_UPVOTE = 'FINISH_LOADING_UPVOTE';
 export const RECEIVE_PRODUCT_UPVOTE = 'RECEIVE_PRODUCT_UPVOTE'; 
 
+export const CLOSE_PRODUCT_FORM = 'CLOSE_PRODUCT_FORM';
+export const OPEN_PRODUCT_FORM = 'OPEN_PRODUCT_FORM';
+
+
 export const START_CREATING_PRODUCT = 'START_CREATING_PRODUCT';
 export const FINISH_CREATING_PRODUCT = 'FINISH_CREATING_PRODUCT';
+export const START_UPDATING_PRODUCT = 'START_UPDATING_PRODUCT';
+export const FINISH_UPDATING_PRODUCT = 'FINISH_UPDATING_PRODUCT';
 
 import * as ProductApiUtil from '../util/product_api_util';
 
@@ -31,28 +40,21 @@ export const receiveProducts = (products) => ({
   type: RECEIVE_PRODUCTS,
   products
 });
+export const receivePublisherProducts = (products) => ({
+  type: RECEIVE_PUBLISHER_PRODUCTS,
+  products
+});
 
 export const receiveSingleProduct = (product) => ({
   type: RECEIVE_SINGLE_PRODUCT,
   product
 });
 
-export const startLoadingUpvote = (productId) => ({
-  type: START_LOADING_UPVOTE,
-  productId
+export const closeProductForm = () => ({
+  type: CLOSE_PRODUCT_FORM
 });
-
-export const finishLoadingUpvote = (productId) => ({
-  type: FINISH_LOADING_UPVOTE,
-  productId
-});
-
-export const startCreatingProduct = () => ({
-  type: START_CREATING_PRODUCT
-});
-
-export const finishCreatingProduct = () => ({
-  type: FINISH_CREATING_PRODUCT,
+export const openProductForm = () => ({
+  type: OPEN_PRODUCT_FORM
 });
 
 
@@ -77,6 +79,17 @@ export const fetchAllProducts = () => dispatch => {
     .then( products => {
       dispatch(receiveProducts(products));
       dispatch({ type: FINISH_LOADING_ALL_PRODUCTS });
+    })
+    .catch(errors => { dispatch(receiveProductErrors(errors)) } )
+};
+
+
+export const fetchProductsByPublisher = (publisherId) => dispatch => {
+  dispatch({ type: START_LOADING_PUBLISHER_PRODUCTS, loading: true });
+  return ProductApiUtil.fetchProductByPublisher(publisherId)
+    .then( products => {
+      dispatch(receiveProducts(products));
+      dispatch({ type: FINISH_LOADING_PUBLISHER_PRODUCTS });
     })
     .catch(errors => { dispatch(receiveProductErrors(errors)) } )
 };
@@ -133,13 +146,13 @@ const randomNumber = (length) => {
 }
 
 export const createProduct = (product) => dispatch => {
-  dispatch(startCreatingProduct());
+  dispatch(openProductForm());
   return ProductApiUtil.postProduct(product)
     .then( product => {
       // console.log(`Response product: ${JSON.stringify(product)} `)
       dispatch(receiveSingleProduct(product));
-      dispatch(finishCreatingProduct(product.id));
       dispatch(addNotification("Created product successfully!", randomNumber(4) ));
+      dispatch(closeProductForm());
     })
     .catch( errors => {
       let errorMsg = errors.responseJSON;
@@ -150,6 +163,19 @@ export const createProduct = (product) => dispatch => {
       //   dispatch(renderError(error), randomNumber(5))
       // }
       // );
+      dispatch(renderError(errorMsg), randomNumber(5));
+    })
+};
+export const updateProduct = (product) => dispatch => {
+  dispatch(openProductForm());
+  return ProductApiUtil.updateProduct(product)
+    .then( product => {
+      dispatch(receiveSingleProduct(product));
+      dispatch(addNotification("Update product successfully!", randomNumber(4) ));
+      dispatch(closeProductForm());
+    })
+    .catch( errors => {
+      let errorMsg = errors.responseJSON;
       dispatch(renderError(errorMsg), randomNumber(5));
     })
 };

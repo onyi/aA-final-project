@@ -11,7 +11,7 @@ class ProductForm extends React.Component {
     this.hideModal = this.hideModal.bind(this);
 
     this.state = 
-      { product : 
+      { product: this.props.product ? this.props.product :
         {
           title: '',
           description: '',
@@ -31,11 +31,16 @@ class ProductForm extends React.Component {
       // console.log(`file reader on load ended: ${JSON.stringify(e)}`);
       // console.log(`file: ${JSON.stringify(file)}`);
       let product = this.state.product;
-      product["header_img"] = fileReader.result
-      this.setState({ product: product, photoUrl: fileReader.result });
+      product["header_img"] = fileReader.result;
+      product["header_img"] = fileReader.result;
+
+      // product["photo"] = fileReader.result;
+      this.setState({ product: product, imageFile: fileReader.result });
     };
     if (file) {
       fileReader.readAsDataURL(file);
+    }else {
+      this.setState({ header_img: "", imageFile: null });
     }
   }
 
@@ -43,14 +48,21 @@ class ProductForm extends React.Component {
   handleSubmit(e){
     e.stopPropagation();
     e.preventDefault();
-    // console.log(`Current State: ${JSON.stringify(this.state)}`);
-    // const formData = new FormData();
-    // formData.append('product[title]', this.state.product.title);
-    // formData.append('product[header]', this.state.product.header);
-    // // add our coordinates
-    // formData.append('product[link]', this.state.product.link);
-    // formData.append('product[description]', this.state.product.description);
-    this.props.createProduct(this.state.product);
+
+    console.log(`Current State: ${JSON.stringify(this.state)}`);
+    const formData = new FormData();
+    formData.append('product[title]', this.state.product.title);
+    formData.append('product[header]', this.state.product.header);
+    formData.append('product[link]', this.state.product.link);
+    formData.append('product[description]', this.state.product.description);
+    formData.append('product[header_img]', this.state.product.header_img);
+    if(this.state.productId){
+      formData.append('product[id]', this.state.product.id);
+    }
+    
+    this.props.productId ? 
+      this.props.updateProduct(formData) : 
+      this.props.createProduct(formData);
   }
 
   update(e){
@@ -84,14 +96,20 @@ class ProductForm extends React.Component {
   render() {
     const {title, description, header, link, header_img} = this.state.product;
     // const {show} = this.props.show;
-    const preview = this.state.photoUrl ? 
-      <img className="product-preview-img" src={this.state.photoUrl}></img> : null;
+    const preview = header_img ? 
+      <img className="product-preview-img" src={header_img}></img> : null;
+
+    // if (this.props.productId){
+
+    // }else{
+
+    // }
 
     return (
 
       <Modal show={this.props.products.show} handleClose={this.hideModal}>
         <div className="product-form-container">
-          <h1>This is a product form!!!</h1>
+          <h1>Create New Product Post</h1>
           <div className="product-form-wrapper">
             <form onSubmit={this.handleSubmit} className="product-form">
 

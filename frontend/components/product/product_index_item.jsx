@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 import ProductVoteContainer from '../product_vote/product_vote_container';
 
-const ProductIndexItem = ({ product }) => {
+const ProductIndexItem = ({ product, editable, openProductForm }) => {
+
   return (
     <li>
       <div className="product-list-container">
@@ -27,6 +28,13 @@ const ProductIndexItem = ({ product }) => {
             isUpvoted={product.is_upvoted}
             />
         </div>
+        { editable ? (
+          <div className="product-edit-container">
+            <Link to={`/product/edit/${product.id}`} >
+              <button className="product-edit" onClick={openProductForm} >Edit</button>
+            </Link>
+          </div>) 
+          : "" }
 
       </div>
     </li>

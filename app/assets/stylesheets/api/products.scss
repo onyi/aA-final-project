@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  min-width: 500px;
 }
 
 
@@ -148,10 +149,19 @@ button.new-product-button {
   width: 160px;
 }
 
+.product-form-container {
+  h1 {
+    padding-bottom: 30px;
+    text-align: center;
+  }
+}
+
+
 .product-form-wrapper {
   max-width: 30vw;
   max-height: 90vh;
   overflow: hidden;
+
 }
 
 .product-form {
@@ -166,4 +176,36 @@ button.new-product-button {
 .product-preview-img {
   width: 80px;
   height: 80px;
+}
+
+.product-edit-container {
+  margin:auto;
+  padding: 5px
+}
+
+.product-edit {
+  width: 50px;
+  height: 25px;
+  display: inline-block
+}
+
+.product-index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  > * {
+    padding-bottom: 10px;
+  }
+}
+
+
+#product-create-button {
+  color: $orange-button;
+  font-size: 36px;
+  padding: 0 20px; 
+  :hover{
+    transition: margin-right 2s .5s;
+  }
 }

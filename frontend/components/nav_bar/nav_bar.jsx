@@ -23,9 +23,13 @@ export default ({ currentUser, logoutUser}) => {
         {/* <Link to="/">
           <h1 className="nav-bar-logo"></h1>
         </Link> */}
-        {/* TODO: Replace H1 with an icon image */}
-        <div className="auth-ele">
-          {display}
+        <div className="nav-bar-action-wrapper">
+          <Link to="/product/create" id="product-create-button">
+            <i className="fas fa-plus-square" placeholder="Create New Product"></i>
+          </Link>
+          <div className="auth-ele">
+            {display}
+          </div>
         </div>
       </header>
     </div>

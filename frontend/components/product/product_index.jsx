@@ -5,6 +5,10 @@ import ProductIndexItem from './product_index_item';
 
 import ProductVoteContainer from '../product_vote/product_vote_container';
 
+import { Link } from 'react-router-dom';
+
+
+
 
 class ProductIndex extends React.Component {
 
@@ -34,7 +38,6 @@ class ProductIndex extends React.Component {
     }else{
       return (
         <div>
-          <h2>Product Index Page</h2>
           <ul className="product-list-main">
             {products.map( 
               product => 

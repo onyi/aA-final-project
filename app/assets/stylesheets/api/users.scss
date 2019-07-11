@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-.user-profile-wrapper h1 {
+.user-profile-wrapper, .user-products-wrapper h1 {
   padding: 20px;
 
 }
@@ -38,4 +38,13 @@
   align-content: center;
   background: $form-gray;
   padding: 30px
+}
+
+
+.user-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
 }

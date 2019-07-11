@@ -7,18 +7,23 @@ import {withRouter} from 'react-router-dom';
 
 import { addNotification } from '../../actions/notification_action'
 
+import { fetchProductsByPublisher, updateProduct } from '../../actions/product_action';
+
 const msp = (state = {}, ownProps) => {
   let userId = ownProps.match.params.userId;
   let user = state.entities.users[userId];
   let errors = state.errors.user;
-  return { userId, user, errors };
+  let products = Object.values(state.entities.products);
+  let loading = state.ui.loading.product.publishedProductLoading
+  return { userId, user, errors, products };
 };
 
 const mdp = dispatch => ({
   getUser: (id) => dispatch(getUser(id)),
   updateUser: (user) => dispatch(updateUser(user)),
   removeUserErrors: () => dispatch(removeUserErrors()),
-  addNotification: (message) => dispatch(addNotification(message))
+  addNotification: (message) => dispatch(addNotification(message)),
+  getUserProducts: (publisherId) => dispatch(fetchProductsByPublisher(publisherId)),
 });
 
 export default withRouter(connect(msp, mdp)(User));

@@ -1,9 +1,14 @@
 import React from 'react';
 
+import ProductIndexItem from '../product/product_index_item';
+
+import LoadingIcon from '../loading_icon';
+
 class User extends React.Component {
 
   constructor(props){
     super(props);
+    this.user = this.props.user || {};
     this.state = this.props.user || {};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -36,6 +41,7 @@ class User extends React.Component {
 
   componentDidMount(){
     this.props.getUser(this.props.userId);
+    this.props.getUserProducts(this.props.userId);
   }
 
   handleSubmit(e){
@@ -64,7 +70,29 @@ class User extends React.Component {
     // console.log(`Render state: ${ JSON.stringify(this.state) }`)
     // if (!user) return null;
     this.renderError();
+    const { products } = this.props;
+
+    // let product_view = products ? (
+    //   <ul className="product-list-main">
+    //     {products.map(
+    //       product =>
+    //         <ProductIndexItem
+    //           key={product.id}
+    //           product={product}
+    //           productId={product.id}
+    //         />
+    //     )}
+    //   </ul>
+    // ) : (
+    //   <LoadingIcon />
+    // );
+      
+    if (this.props.loading) {
+      return (<LoadingIcon />)
+    }
+
     return (
+      <div className="user-profile">
       <div className="user-profile-wrapper">
         
         <h1>User Profile</h1>
@@ -98,7 +126,21 @@ class User extends React.Component {
             <input type="submit" value="Update Profile" className="button" />
           </div>
         </form>
-
+      </div>
+      <div className="user-products-wrapper">
+        <h1>{products.length} Published Product{products.length > 1 ? "s" : ""}</h1>
+        <ul className="product-list-main">
+          {products.map(
+            product =>
+              <ProductIndexItem
+                key={product.id}
+                product={product}
+                productId={product.id}
+                editable={true}
+              />
+          )}
+        </ul>
+      </div>
       </div>
     );
   }
