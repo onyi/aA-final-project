@@ -11,7 +11,13 @@ import { fetchProductsByPublisher } from '../../actions/product_action';
 
 const msp = (state = {}, ownProps) => {
   let userId = ownProps.match.params.userId;
-  let user = state.entities.users[userId] || {};
+  let user = state.entities.users[userId] || {
+    username: '',
+    email: '',
+    website: '',
+    headline: '',
+    profile_img: ''
+  };
   let errors = state.errors.user;
   let products = Object.values(state.entities.products);
   let loading = state.ui.loading.product.publishedProductLoading
