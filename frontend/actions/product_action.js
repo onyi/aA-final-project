@@ -58,6 +58,15 @@ export const removeProduct = (product) => ({
   product
 });
 
+export const startLoadingUpvote = (productId) => ({
+  type: START_LOADING_UPVOTE,
+  productId
+});
+export const finishLoadingUpvote = (productId) => ({
+  type: FINISH_LOADING_UPVOTE,
+  productId
+});
+
 export const closeProductForm = () => ({
   type: CLOSE_PRODUCT_FORM
 });
