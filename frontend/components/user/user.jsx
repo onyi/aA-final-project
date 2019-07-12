@@ -84,7 +84,7 @@ class User extends React.Component {
   render(){
     // console.log(`Render state: ${ JSON.stringify(this.state) }`)
     this.renderError();
-    const { products, user } = this.props;
+    const { products, user, deleteProduct } = this.props;
       
     if (this.props.loading) {
       return (<LoadingIcon />)
@@ -148,6 +148,7 @@ class User extends React.Component {
                   product={product}
                   productId={product.id}
                   editable={true}
+                  deleteProduct={deleteProduct}
                 />
             )}
           </ul>

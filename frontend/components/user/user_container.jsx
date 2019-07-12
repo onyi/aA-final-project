@@ -7,7 +7,10 @@ import {withRouter} from 'react-router-dom';
 
 import { addNotification } from '../../actions/notification_action'
 
-import { fetchProductsByPublisher } from '../../actions/product_action';
+import { 
+  fetchProductsByPublisher,
+  deleteProduct
+} from '../../actions/product_action';
 
 const msp = (state = {}, ownProps) => {
   let userId = ownProps.match.params.userId;
@@ -30,6 +33,8 @@ const mdp = dispatch => ({
   removeUserErrors: () => dispatch(removeUserErrors()),
   addNotification: (message) => dispatch(addNotification(message)),
   getUserProducts: (publisherId) => dispatch(fetchProductsByPublisher(publisherId)),
+  deleteProduct: (id) => dispatch(deleteProduct(id)),
+
 });
 
 export default withRouter(connect(msp, mdp)(User));

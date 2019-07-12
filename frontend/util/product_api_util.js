@@ -56,6 +56,16 @@ export const updateProduct = (product) => {
   })
 }
 
+export const deleteProduct = (productId) => {
+  console.log(`delete product: ${productId}`);
+
+  return $.ajax({
+    url: `api/products/${productId}`,
+    method: 'DELETE'
+  })
+}
+
+
 const createProductForm = (product) => {
   const formData = new FormData();
   formData.append('product[title]', product.title);

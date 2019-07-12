@@ -1,6 +1,7 @@
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PUBLISHER_PRODUCTS = 'RECEIVE_PUBLISHER_PRODUCTS';
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT';
+export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
 export const RECEIVE_PRODUCT_ERRORS = 'RECEIVE_PRODUCT_ERRORS';
 export const CLEAR_PRODUCT_ERRORS = 'CLEAR_PRODUCT_ERRORS';
@@ -24,6 +25,8 @@ export const START_CREATING_PRODUCT = 'START_CREATING_PRODUCT';
 export const FINISH_CREATING_PRODUCT = 'FINISH_CREATING_PRODUCT';
 export const START_UPDATING_PRODUCT = 'START_UPDATING_PRODUCT';
 export const FINISH_UPDATING_PRODUCT = 'FINISH_UPDATING_PRODUCT';
+export const START_DELETING_PRODUCT = 'START_DELETING_PRODUCT';
+export const FINISH_DELETING_PRODUCT = 'FINISH_DELETING_PRODUCT';
 
 import * as ProductApiUtil from '../util/product_api_util';
 
@@ -50,6 +53,11 @@ export const receiveSingleProduct = (product) => ({
   product
 });
 
+export const removeProduct = (product) => ({
+  type: REMOVE_PRODUCT,
+  product
+});
+
 export const closeProductForm = () => ({
   type: CLOSE_PRODUCT_FORM
 });
@@ -67,6 +75,12 @@ export const startUpdatingProduct = () => ({
 });
 export const finishUpdatingProduct = () => ({
   type: FINISH_UPDATING_PRODUCT
+});
+export const startDeletingProduct = () => ({
+  type: START_DELETING_PRODUCT
+});
+export const finishDeletingProduct = () => ({
+  type: FINISH_DELETING_PRODUCT
 });
 
 
@@ -182,6 +196,7 @@ export const createProduct = (product) => dispatch => {
       dispatch(renderError(errorMsg, randomNumber(5)));
     })
 };
+
 export const updateProduct = (product) => dispatch => {
   dispatch(startUpdatingProduct());
   return ProductApiUtil.updateProduct(product)
@@ -190,6 +205,20 @@ export const updateProduct = (product) => dispatch => {
       dispatch(addNotification("Update product successfully!", randomNumber(4) ));
       dispatch(finishUpdatingProduct());
       dispatch(closeProductForm());
+    })
+    .catch( errors => {
+      let errorMsg = errors.responseJSON;
+      dispatch(renderError(errorMsg, randomNumber(5)));
+    })
+};
+
+export const deleteProduct = (productId) => dispatch => {
+  dispatch(startDeletingProduct());
+  return ProductApiUtil.deleteProduct(productId)
+    .then( product => {
+      dispatch(removeProduct(product));
+      dispatch(addNotification("Delete product post successfully!", randomNumber(4) ));
+      dispatch(finishDeletingProduct());
     })
     .catch( errors => {
       let errorMsg = errors.responseJSON;

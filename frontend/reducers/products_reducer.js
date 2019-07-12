@@ -7,7 +7,8 @@ import {
   RECEIVE_PUBLISHER_PRODUCTS,
   RECEIVE_PRODUCT_UPVOTE,
   OPEN_PRODUCT_FORM,
-  CLOSE_PRODUCT_FORM
+  CLOSE_PRODUCT_FORM,
+  REMOVE_PRODUCT
 } from '../actions/product_action';
 
 const productsReducer = (state = {}, action) => {
@@ -20,6 +21,10 @@ const productsReducer = (state = {}, action) => {
       return merge({}, action.products);
     case RECEIVE_SINGLE_PRODUCT:
       return merge({}, state, { [action.product.id]: action.product } );
+    case REMOVE_PRODUCT:
+      let newState = merge({}, state);
+      delete newState[action.product.id]
+      return newState;
     case RECEIVE_PRODUCT_UPVOTE:
       const product = state[action.productId];
       product.upvotes = action.upvoteCount;

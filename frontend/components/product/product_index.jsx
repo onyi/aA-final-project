@@ -31,7 +31,8 @@ class ProductIndex extends React.Component {
   }
 
   render(){
-    const { loading, products, postUpvote, deleteUpvote } = this.props;
+    const { loading, products, postUpvote, deleteUpvote, deleteProduct } = this.props;
+    // console.log(`${deleteProduct}`);
     // console.log(`ProductIndex Render, props: ${JSON.stringify(this.props)} `);
     if (this.props.products.length === 0){
       return (<LoadingIcon />)
@@ -47,6 +48,7 @@ class ProductIndex extends React.Component {
                   productId={product.id}
                   postUpvote={postUpvote}
                   deleteUpvote={deleteUpvote}
+                  deleteProduct={deleteProduct}
                 /> 
             )}
           </ul>
