@@ -16,7 +16,7 @@ export const renderError = (errorMsg, id) => dispatch => {
     error => {
       toast(<div className="notification-wrapper">{error}</div>, {
         pauseOnHover: false,
-        autoClose: 5000,
+        autoClose: '5000',
         type: toast.TYPE.ERROR,
         position: "top-center",
         onClose: () => {

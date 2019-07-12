@@ -9,8 +9,9 @@ export const addNotification = (message, id, type) => dispatch => {
 
   toast(<div className="notification-wrapper"><span>{message}</span></div>, {
     pauseOnHover: false,
-    autoClose: 5000,
-    type: toast.TYPE.INFO,
+    autoClose: '5000',
+    type: type || toast.TYPE.SUCCESS,
+    position: "top-right",
     onClose: () => {
       dispatch(removeNotification(id));
     }
