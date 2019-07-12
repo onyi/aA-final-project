@@ -103,7 +103,7 @@ class ProductDetail extends React.Component {
                 <div className="product-description-wrapper">
                   <h3>Description</h3>
                   <br />
-                  {product.description}
+                  <p>{product.description}</p>
                 </div>
                 : null }
 
