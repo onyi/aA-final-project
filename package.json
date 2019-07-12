@@ -15,10 +15,8 @@
     "react-router-dom": "^5.0.1",
     "react-toastify": "^5.3.1",
     "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.35.2"
   },
   "description": "A project that clone Product Hunt website.",
   "version": "1.0.0",
@@ -50,6 +48,8 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.5.0",
     "file-loader": "^4.0.0",
-    "url-loader": "^2.0.1"
+    "url-loader": "^2.0.1",
+    "webpack-cli": "^3.3.5",
+    "redux-logger": "^3.0.6"
   }
 }
