@@ -9,7 +9,7 @@ const ProductDiscussionItem = ({ discussion, isReply }) => {
 
   return (
     // <div className={isReply  "discussion" : "discussion-reply"}>
-    <li className="discussion">
+    <li className={`discussion ${isReply ? "discussion-reply" : ""}`}>
       <div className="discussion-user-detail">
         <img className="profile-img-thumbnail" 
           src={discussion.author.profile_img ? discussion.author.profile_img : "https://static.thenounproject.com/png/538846-200.png"} />

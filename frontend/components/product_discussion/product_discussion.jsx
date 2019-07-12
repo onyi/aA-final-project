@@ -79,7 +79,14 @@ class ProductDiscussion extends React.Component {
 
           <ul className="discussion-list">
             { discussions.map( discussion => 
-                <ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={!discussion.parent_discussion_id ? false : true} />
+                (
+                  <div>
+                    <ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={!discussion.parent_discussion_id ? false : true} />
+                    { discussion.discussionReplies.map( subdiscussion => (
+                      <ProductDiscussionItem key={subdiscussion.id} discussion={subdiscussion} isReply={true} />
+                    )) }
+                  </div>
+                )
               )
             }
 

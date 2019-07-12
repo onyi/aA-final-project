@@ -28,7 +28,7 @@ class Api::ProductDiscussionsController < ApplicationController
   end
 
   def index
-    @product_discussions = ProductDiscussion.includes(:author).where("product_id = #{params[:product_id]}").where("parent_discussion_id IS NULL").order('created_at ASC')
+    @product_discussions = ProductDiscussion.includes(:author).includes(:discussion_replies).where("product_id = #{params[:product_id]}").where("parent_discussion_id IS NULL").order('created_at ASC')
   end
   
 
