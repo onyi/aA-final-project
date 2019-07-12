@@ -32,6 +32,6 @@ class Product < ApplicationRecord
     foreign_key: :product_id,
     class_name: :ProductDiscussion
 
-  has_one_attached :header_img
+  # has_one_attached :header_img
 
 end
