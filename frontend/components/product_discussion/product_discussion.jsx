@@ -52,12 +52,24 @@ class ProductDiscussion extends React.Component {
     this.props.getDiscussions(this.props.productId);
   }
 
+  getDiscussions(discussions, isReply, level = 0){
+    let discussionItemArray = [];
+    if (discussions.length !== 0){
+      discussions.forEach(discussion => {
+        discussionItemArray.push(<ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={isReply} level={level} />); 
+        discussionItemArray = discussionItemArray.concat(this.getDiscussions(discussion.discussionReplies, true, (level + 1) ));
+      });
+    }
+    return discussionItemArray;
+  }
+
+
   render(){
 
     const { loading, discussions, currentUser } = this.props;
 
-    // if (loading){
-    if (!discussions){
+    if (loading){
+    // if (!discussions){
       return (<LoadingIcon />);
     }
     else {
@@ -78,7 +90,14 @@ class ProductDiscussion extends React.Component {
           </div>
 
           <ul className="discussion-list">
-            { discussions.map( discussion => 
+            {
+              this.getDiscussions(discussions).map(
+              discussion => {
+                return discussion
+              }
+            )}
+            {/* Previous logic here just in case */}
+            {/* { discussions.map( discussion => 
                 (
                   <div>
                     <ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={!discussion.parent_discussion_id ? false : true} />
@@ -88,7 +107,7 @@ class ProductDiscussion extends React.Component {
                   </div>
                 )
               )
-            }
+            } */}
 
           </ul>
 
