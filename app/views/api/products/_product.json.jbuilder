@@ -1,7 +1,17 @@
 # json.merge! product.attributes
 
-# json.merge! product.attributes.except("header_img")
-json.merge! product.attributes
+json.merge! product.attributes.except("header_img")
+
+if product.header_img.nil?
+  json.header_img ''
+elsif !product.header_img.include?('http')
+  json.header_img image_path(product.header_img)
+else
+   json.header_img product.header_img
+end
+
+
+# json.merge! product.attributes
 
 # json.header_img product.header_img.attached? ? url_for(product.header_img) : product.header_img
 

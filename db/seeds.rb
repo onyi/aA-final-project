@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'open-uri'
 
 # Create demo user account
 User.create({ username: "demouser", email: "demo@user.local", password: "demouser" })
@@ -91,14 +92,28 @@ image_path_prefix = "app/assets/images/icons"
 image_files = Dir.new("#{image_path_prefix}").to_a.select { |f| f.downcase.match(/\.svg/)}
 
 10.times do 
-  Product.create({
+  img = image_files.sample
+
+  product = Product.create({
     title: Faker::App.name,
     header: Faker::Hacker.say_something_smart,
-    header_img: image_files.sample,
+    header_img: img,
     description: '',
     publisher_id: users_id.sample,
     link: 'https://www.appacademy.io/'
   })
+
+  # file = open("https://s3.amazonaws.com/product-hub-dev/#{img}.jpg")
+  # product = Product.new(
+  #   title: Faker::App.name,
+  #   header: Faker::Hacker.say_something_smart,
+  #   header_img: image_files.sample,
+  #   description: '',
+  #   publisher_id: users_id.sample,
+  #   link: 'https://www.appacademy.io/'
+  # )
+  # product.header_img.attach(io: file, filename: "#{img}")
+  # product.save
 end
 
 # Product.create({
