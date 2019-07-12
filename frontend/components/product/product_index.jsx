@@ -34,7 +34,8 @@ class ProductIndex extends React.Component {
     const { loading, products, postUpvote, deleteUpvote, deleteProduct } = this.props;
     // console.log(`${deleteProduct}`);
     // console.log(`ProductIndex Render, props: ${JSON.stringify(this.props)} `);
-    if (this.props.products.length === 0){
+    // if (this.props.products.length === 0){
+    if (loading){
       return (<LoadingIcon />)
     }else{
       return (
