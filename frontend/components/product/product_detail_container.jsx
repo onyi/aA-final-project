@@ -7,7 +7,7 @@ import { fetchProduct } from '../../actions/product_action';
 const msp = (state = {}, ownProps) => {
   return {
     product: state.entities.products[ownProps.match.params.productId],
-    loading: state.ui.loading.product.detailLoading || true,
+    loading: state.ui.loading.product.detailLoading,
     show: true
   }
 };

@@ -43,21 +43,22 @@ class ProductDetail extends React.Component {
   }
 
   render(){
-    const {product} = this.props;
+    const {product, loading } = this.props;
     if (!product){
-      return (<Modal><LoadingIcon /></Modal>)
+    // if (loading){
+      return (<Modal show={true}><LoadingIcon /></Modal>)
     } else{
       return (
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <div className="product-detail-wrapper">
-            <h3>Product Detail</h3>
+            {/* <h3>Product Detail</h3> */}
             <div className="product-detail-header-content">
               <div className="product-detail-header-container">
-                <img src={product.header_img}></img>
+                <img className="product-detail-header-img" src={product.header_img}></img>
               </div>
               <div className="product-detail-header-container">
                 <div className="field">
-                  <p>{product.title}</p>
+                  <h1>{product.title}</h1>
                 </div>
                 <div className="field">
                   <h3>{product.header}</h3>
@@ -76,24 +77,36 @@ class ProductDetail extends React.Component {
 
               </section>
               <section className="product-detail-main-right">
-                <div className="product-upvote-container product-upvote-detail" >
-                  <ProductVoteContainer
-                    productId={product.id}
-                    productVoteCount={product.upvotes}
-                    isUpvoted={product.isUpvoted}
-                  /> 
-                </div>
-                <a href={product.link} className="product-link">
-                  <div>
-                    <i className="fas fa-compass"></i>
-                    <div>
-                      <h3>Website</h3>
-                      <p>{product.link}</p>
-                    </div>
-
+                <div className="product-upvote-wrapper">
+                  <label>Product Upvote</label>
+                  <div className="product-upvote-container product-upvote-detail" >
+                    <ProductVoteContainer
+                      productId={product.id}
+                      productVoteCount={product.upvotes}
+                      isUpvoted={product.isUpvoted}
+                    /> 
                   </div>
+                </div>
+                <div className="product-link-wrapper">
+                  <a href={product.link} className="product-link">
+                    <div className="product-link-content">
+                      <i className="fas fa-compass"></i>
+                      <div>
+                        <h3>Website</h3>
+                        <p>{product.link}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                
+                {product.description ? 
+                <div className="product-description-wrapper">
+                  <h3>Description</h3>
+                  <br />
+                  {product.description}
+                </div>
+                : null }
 
-                </a>
               </section> 
             </div>
           </div>
