@@ -38,57 +38,51 @@
       show: true/false
     },
     productDiscussions: {
-      1: [ // this ID represents product ID because product discussion belongs to a product
-        { 1: 
-          {
-            id: 1,
-            body: "hello, world!",
+      1: 
+        {
+          id: 1,
+          body: "hello, world!",
+          authorId: 88,
+          productId: 1,
+          parentDiscussionId: null
+          upvotes: 50,
+          discussionReplies: [{
+            id: 20,
+            body: "hello, world, too!",
             authorId: 88,
             productId: 1,
-            parentDiscussionId: null
-            upvotes: 50,
-            discussionReplies: [{
-              id: 20,
-              body: "hello, world, too!",
-              authorId: 88,
-              productId: 1,
-              parentDiscussionId: 1
-            }]
-          }
+            parentDiscussionId: 1
+          }]
         },
-        { 2: 
-          {
-            id: 2,
-            body: "This is a comment to test functionality",
-            authorId: 101,
-            productId: 1,
-            parentDiscussionId: null,
-            discussionReplies: []
-          }
+      2: 
+        {
+          id: 2,
+          body: "This is a comment to test functionality",
+          authorId: 101,
+          productId: 1,
+          parentDiscussionId: null,
+          discussionReplies: []
         },
-        { 3: 
-          {
-            id: 3,
-            body: "Great product! Great idea! This is an example for replying a reply",
-            authorId: 88,
-            parentCommentId: 2,
-            productId: 1,
-            parentDiscussionId: null,
-            discussionReplies: []
-          }
+      3: 
+        {
+          id: 3,
+          body: "Great product! Great idea! This is an example for replying a reply",
+          authorId: 88,
+          parentCommentId: 2,
+          productId: 1,
+          parentDiscussionId: null,
+          discussionReplies: []
         },
-        { 6 : 
-          {
-            id: 6,
-            body: "I really enjoy this product. Great work!",
-            authorId: 101
-            productId: 1,
-            parentDiscussionId: null,
-            discussionReplies: []
-          }
+      6: 
+        {
+          id: 6,
+          body: "I really enjoy this product. Great work!",
+          authorId: 101
+          productId: 1,
+          parentDiscussionId: null,
+          discussionReplies: []
         }
-      ]
-    },
+      }
   },
   ui: {
     loading: {
