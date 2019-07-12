@@ -2,10 +2,12 @@ import React from 'react';
 
 import LoadingIcon from '../loading_icon';
 
-
 import ProductDiscussionItem from './product_discussion_item';
 
 import merge from 'lodash/merge';
+
+import { Link, withRouter } from 'react-router-dom';
+
 
 class ProductDiscussion extends React.Component {
 
@@ -68,9 +70,10 @@ class ProductDiscussion extends React.Component {
           <div className="discussion-input-wrapper">
             <form className="discussion-form" onSubmit={this.handleSubmit}>
               <img className="profile-img-thumbnail"
-                src={currentUser.profile_img ? currentUser.profile_img : "https://static.thenounproject.com/png/538846-200.png"} />
+                src={currentUser && currentUser.profile_img ? currentUser.profile_img : "https://static.thenounproject.com/png/538846-200.png"} />
               <input type="text" name="body" onChange={this.update} />
-              <input type="submit" className="button" value="Send" />
+              { currentUser ? <input type="submit" className="button" value="Send" /> : <Link to="/login" ><button className="button">Send</button></Link> }
+              
             </form>
           </div>
 
@@ -91,4 +94,4 @@ class ProductDiscussion extends React.Component {
 }
 
 
-export default ProductDiscussion;
+export default withRouter(ProductDiscussion);

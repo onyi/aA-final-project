@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link, withRouter } from 'react-router-dom';
 
 const ProductDiscussionItem = ({ discussion, isReply }) => {
   
@@ -23,4 +24,4 @@ const ProductDiscussionItem = ({ discussion, isReply }) => {
 };
 
 
-export default ProductDiscussionItem;
+export default withRouter(ProductDiscussionItem);
