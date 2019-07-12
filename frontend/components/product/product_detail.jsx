@@ -6,6 +6,8 @@ import {Modal} from '../../util/modal_util';
 
 import ProductVoteContainer from '../product_vote/product_vote_container';
 
+import ProductDiscussionContainer from '../product_discussion/product_discussion_container';
+
 class ProductDetail extends React.Component {
 
   constructor(props){
@@ -48,7 +50,7 @@ class ProductDetail extends React.Component {
       return (
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <div className="product-detail-wrapper">
-            <h3>Product Detail Page</h3>
+            <h3>Product Detail</h3>
             <div className="product-detail-header-content">
               <div className="product-detail-header-container">
                 <img src={product.header_img}></img>
@@ -64,9 +66,12 @@ class ProductDetail extends React.Component {
             </div>
             <div className="product-detail-main">
               <section className="product-detail-main-left">
-                {/* Temporary place holder  */}
+                {/* Temporary place holder for Product images gallery */}
                 <div className="product-detail-img">
                   <img src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg"></img>
+                </div>
+                <div className="product-discussion">
+                  <ProductDiscussionContainer productId={product.id} />
                 </div>
 
               </section>
@@ -75,7 +80,7 @@ class ProductDetail extends React.Component {
                   <ProductVoteContainer
                     productId={product.id}
                     productVoteCount={product.upvotes}
-                    isUpvoted={product.is_upvoted}
+                    isUpvoted={product.isUpvoted}
                   /> 
                 </div>
                 <a href={product.link} className="product-link">

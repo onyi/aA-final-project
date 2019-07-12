@@ -23,7 +23,7 @@ const productsReducer = (state = {}, action) => {
     case RECEIVE_PRODUCT_UPVOTE:
       const product = state[action.productId];
       product.upvotes = action.upvoteCount;
-      product.is_upvoted = action.isUpvoted;
+      product.isUpvoted = action.isUpvoted;
       return merge({}, state, { [action.productId]: product });
     case OPEN_PRODUCT_FORM:
       return merge({}, state, { show: true });

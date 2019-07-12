@@ -10,10 +10,13 @@ import {
   START_UPDATING_PRODUCT,
   FINISH_UPDATING_PRODUCT,
   START_LOADING_PUBLISHER_PRODUCTS,
-  FINISH_LOADING_PUBLISHER_PRODUCTS,
-
-  
+  FINISH_LOADING_PUBLISHER_PRODUCTS,  
 } from '../actions/product_action';
+
+import {
+  START_LOADING_DISCUSSIONS,
+  FINISH_LOADING_DISCUSSIONS,
+} from '../actions/product_discussion_action'
 
 import merge from 'lodash/merge';
 
@@ -44,6 +47,10 @@ const productLoadingReducer = (state = {}, action) => {
       return merge({}, state, { publishedProductLoading: true });
     case FINISH_LOADING_PUBLISHER_PRODUCTS:
       return merge({}, state, { publishedProductLoading: false });
+    case START_LOADING_DISCUSSIONS:
+      return merge({}, state, { discussionsLoading: true });
+    case FINISH_LOADING_DISCUSSIONS:
+      return merge({}, state, { discussionsLoading: false });
     default:
       return state;
   }

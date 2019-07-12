@@ -28,9 +28,9 @@ class Api::ProductsController < ApplicationController
 
   def index
     if params[:search_keyword]
-      @products = Product.where("title like ?", "%#{params[:search_keyword]}%")
+      @products = Product.includes(:discussions).where("title like ?", "%#{params[:search_keyword]}%")
     elsif params[:publisher_id]
-      @products = Product.where("publisher_id = ?", "#{params[:publisher_id]}")
+      @products = Product.includes(:discussions).where("publisher_id = ?", "#{params[:publisher_id]}")
     else
       @products = Product.all
       # sleep(5) # Debug loading icon
