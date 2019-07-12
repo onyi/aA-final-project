@@ -4,8 +4,7 @@ import ProductIndex from './product_index';
 import { 
   fetchAllProducts, 
   fetchProduct,
-  createUpvote,
-  deleteUpvote
+  deleteProduct
 } from '../../actions/product_action';
 
 
@@ -23,7 +22,7 @@ const msp = (state = {}, ownProps) => {
 const mdp = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   getProduct: (id) => dispatch(fetchProduct(id)),
-
+  deleteProduct: (id) => dispatch(deleteProduct(id)),
 });
 
 export default connect(msp, mdp)(ProductIndex)
