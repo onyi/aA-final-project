@@ -21,6 +21,22 @@
   padding-right:20px;
 }
 
+.product-upvote-detail {
+  
+}
+
+.product-upvote-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  justify-items: center;
+  label {
+    padding: 0 30px;
+    font-size: 20px;
+  }
+}
+
 .product-upvote {
   width: 100%;
   height: 100%;

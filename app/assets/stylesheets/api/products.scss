@@ -58,6 +58,7 @@
   padding: 20px;
   // margin: 20px;
   border: lightgray 1px solid;
+  background: $lightest-gray;
 }
 
 .product-detail-header-content {
@@ -97,31 +98,26 @@
 
 .product-link {
   color: rgb(41, 35, 35);
-  width: 100%
-}
-
-.product-link > div {
-  border: 1px lightgray solid ;
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   width: 100%;
 }
 
 .product-link > div i {
   font-size: 36px;
-  padding: 10px;
-}
-
-.product-link > div > div {
-  padding: 0 20px
+  padding-right: 10px;
 }
 
 .product-link, .product-link:hover {
   text-decoration: none;
 }
 
+.product-link-content {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+}
 
 
 
@@ -212,4 +208,16 @@ button.new-product-button {
   :hover{
     transition: margin-right 2s .5s;
   }
+}
+
+
+.product-link-wrapper {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.product-description-wrapper{
+  padding: 50px 0; 
+  top: 50px;
+
 }
