@@ -91,7 +91,8 @@ class ProductForm extends React.Component {
     return (
 
       <Modal show={this.props.products.show} handleClose={this.hideModal}>
-        { this.props.loading ? <Loading /> : null }
+        { this.props.loading ? 
+          <Loading /> : 
         <div className="product-form-container">
           <h1>{formTitle}</h1>
           <div className="product-form-wrapper">
@@ -133,6 +134,7 @@ class ProductForm extends React.Component {
 
           </div>
         </div>
+        }
 
       </Modal>
     )

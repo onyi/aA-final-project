@@ -27,7 +27,8 @@ const msp = (state, ownProps) => {
     },
     product,
     currentUserId: state.session.currentUserId,
-    productId
+    productId,
+    loading: state.ui.loading.product.createLoading
   }
 
 };

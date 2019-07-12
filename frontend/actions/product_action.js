@@ -203,6 +203,7 @@ export const createProduct = (product) => dispatch => {
       // }
       // );
       dispatch(renderError(errorMsg, randomNumber(5)));
+      dispatch(finishCreatingProduct());
     })
 };
 
@@ -218,6 +219,7 @@ export const updateProduct = (product) => dispatch => {
     .catch( errors => {
       let errorMsg = errors.responseJSON;
       dispatch(renderError(errorMsg, randomNumber(5)));
+      dispatch(finishUpdatingProduct());
     })
 };
 
@@ -232,5 +234,6 @@ export const deleteProduct = (productId) => dispatch => {
     .catch( errors => {
       let errorMsg = errors.responseJSON;
       dispatch(renderError(errorMsg, randomNumber(5)));
+      dispatch(finishDeletingProduct());
     })
 };

@@ -20,7 +20,14 @@ import {
 
 import merge from 'lodash/merge';
 
-const productLoadingReducer = (state = {}, action) => {
+const productLoadingReducer = (state = 
+  { createLoading: false, 
+    indexLoading: false, 
+    upvoteLoading: {}, 
+    detailLoading: false, 
+    publishedProductLoading: false,
+    discussionsLoading: false
+  }, action) => {
   Object.freeze(state);
   switch (action.type) {
     case START_LOADING_ALL_PRODUCTS:
