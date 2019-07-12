@@ -26,7 +26,7 @@
 }
 
 .discussion-reply {
-  padding-left: 50px;
+  // padding-left: 50px
 }
 
 .discussion-list {
@@ -39,6 +39,7 @@
 .profile-img-thumbnail {
   width: 30px;
   height: 30px;
+  padding-right: 10px;
 }
 
 .discussion {
@@ -82,8 +83,5 @@
   input[type="text"]{
     width: 100%;
     margin: 5px;
-  }
-  .profile-img-thumbnail{
-    padding: 0 10px;
   }
 }
