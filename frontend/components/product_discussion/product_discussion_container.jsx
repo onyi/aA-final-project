@@ -12,7 +12,7 @@ import {
 const msp = (state = {}, ownProps) => {
   return {
     productId: ownProps.productId,
-    loading: state.ui.loading.product.discussionsLoading || true,
+    loading: state.ui.loading.product.discussionsLoading,
     discussions: Object.values(state.entities.discussions),
     currentUser: state.entities.users[state.session.currentUserId]
   }
