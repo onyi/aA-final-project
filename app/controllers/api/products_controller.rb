@@ -1,6 +1,7 @@
 class Api::ProductsController < ApplicationController
 
   def create
+    # debugger
     @product = Product.new(product_params)
     @product.publisher_id = current_user.id
     if @product.save
@@ -36,6 +37,21 @@ class Api::ProductsController < ApplicationController
       # sleep(5) # Debug loading icon
     end
     render 'api/products/index'
+  end
+
+  def destroy
+    @product = current_user.published_products.find_by(id: params[:id])
+    if @product
+      @product.destroy
+      if !@product.errors.empty?
+        render json: @product.errors.full_messages, status: 500
+      else
+        render 'api/products/show'
+      end
+    else
+      render json: ["Cannot delete product post published by other user!"], status: 403
+    end
+
   end
 
   private 
