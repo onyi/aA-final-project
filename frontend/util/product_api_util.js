@@ -20,7 +20,7 @@ export const fetchProductByPublisher = (publisher_id) => {
 }
 
 export const postProduct = (product) => {
-  console.log(`post product: ${JSON.stringify(product)}`);
+  // console.log(`post product: ${JSON.stringify(product)}`);
 
   let formData = createProductForm(product);
   // const formData = new FormData();
@@ -43,7 +43,7 @@ export const postProduct = (product) => {
 }
 
 export const updateProduct = (product) => {
-  console.log(`update product: ${JSON.stringify(product)}`);
+  // console.log(`update product: ${JSON.stringify(product)}`);
 
   let formData = createProductForm(product);
 
@@ -57,7 +57,7 @@ export const updateProduct = (product) => {
 }
 
 export const deleteProduct = (productId) => {
-  console.log(`delete product: ${productId}`);
+  // console.log(`delete product: ${productId}`);
 
   return $.ajax({
     url: `api/products/${productId}`,

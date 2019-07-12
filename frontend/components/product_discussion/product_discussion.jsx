@@ -44,7 +44,7 @@ class ProductDiscussion extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    console.log(JSON.stringify(this.state.discussion));
+    // console.log(JSON.stringify(this.state.discussion));
     this.props.postDiscussion(this.state.discussion);
   }
 

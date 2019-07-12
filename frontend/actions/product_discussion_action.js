@@ -54,7 +54,7 @@ export const postDiscussion = (discussion) => dispatcher => {
 
   return ProductDiscussionApi.postDiscussion(discussion)
     .then(discussion => {
-      console.log(`ProductDiscussionApi  postDiscussion result: ${JSON.stringify(discussion)}`);
+      // console.log(`ProductDiscussionApi  postDiscussion result: ${JSON.stringify(discussion)}`);
       dispatcher(receiveDiscussion(discussion))
       dispatcher(addNotification("Successfully add discussion!"));
     })

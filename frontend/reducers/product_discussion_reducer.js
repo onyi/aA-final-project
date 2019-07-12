@@ -13,10 +13,10 @@ const productDiscussionReducer = (state = {}, action) => {
       if(parentId){
         //Find parent discussion first, and then append discussion to its parent discussionReplies array
         state.entities.discussions.forEach( discussion => {
-          console.log(`Iterate Discussion: ${JSON.stringify(action.discussion)}`);
+          // console.log(`Iterate Discussion: ${JSON.stringify(action.discussion)}`);
         })
       }else{
-        console.log(`discussion to merge: ${JSON.stringify(action.discussion)}`);
+        // console.log(`discussion to merge: ${JSON.stringify(action.discussion)}`);
         return merge({}, state, {[action.discussion.id] : action.discussion });
       }
     case RECEIVE_DISCUSSIONS:

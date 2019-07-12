@@ -38,7 +38,7 @@ const mdp = dispatch => ({
     dispatch(createProduct(product))
   },
   updateProduct: product => {
-    console.log(`Container updateProduct: ${JSON.stringify(product)}`);
+    // console.log(`Container updateProduct: ${JSON.stringify(product)}`);
     dispatch(updateProduct(product))
   },
   openProductForm: () => {
