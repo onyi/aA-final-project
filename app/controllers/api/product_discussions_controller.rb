@@ -8,6 +8,11 @@ class Api::ProductDiscussionsController < ApplicationController
       product_id: params[:product_id]  
     )
     if @product_discussion.save
+      if params[:discussion_id]
+        until @product_discussion.parent_discussion.nil?
+          @product_discussion = @product_discussion.parent_discussion
+        end
+      end
       render 'api/product_discussions/show'
     else
 
