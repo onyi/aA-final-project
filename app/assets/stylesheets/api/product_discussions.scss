@@ -43,7 +43,8 @@
 }
 
 .discussion {
-
+  width: 100%;
+  display: inline-block
 }
 
 .discussion-user-detail {
@@ -65,7 +66,7 @@
 
 .discussion-content-wrapper {
   padding-left: 40px;
-  * {
+  > span,div {
     padding: 10px 0;
   }
 }
@@ -84,4 +85,33 @@
     width: 100%;
     margin: 5px;
   }
+}
+
+.discussion-component-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  > div {
+    padding-right: 5em;
+    font-size: 0.8em;
+    color: $gray;
+    font-weight: 500;
+  }
+}
+
+.discussion-reply-component {
+  display: none;
+  padding: 0;
+  input[type="text"]{
+    width: 100%;
+    margin: 5px;
+  }
+}
+
+
+.discussion-reply-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
