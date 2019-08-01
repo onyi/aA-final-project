@@ -8,6 +8,8 @@ import ProductVoteContainer from '../product_vote/product_vote_container';
 
 import ProductDiscussionContainer from '../product_discussion/product_discussion_container';
 
+import comingSoon from '../../../public/coming-soon.jpg';
+
 class ProductDetail extends React.Component {
 
   constructor(props){
@@ -44,6 +46,7 @@ class ProductDetail extends React.Component {
 
   render(){
     const {product, loading } = this.props;
+
     if (!product){
     // if (loading){
       return (<Modal show={true}><LoadingIcon /></Modal>)
@@ -69,7 +72,8 @@ class ProductDetail extends React.Component {
               <section className="product-detail-main-left">
                 {/* Temporary place holder for Product images gallery */}
                 <div className="product-detail-img">
-                  <img src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg"></img>
+                  <img src={comingSoon}></img>
+                  {/* <img src="coming-soon.jpg"></img> */}
                 </div>
                 <div className="product-discussion">
                   <ProductDiscussionContainer productId={product.id} />
