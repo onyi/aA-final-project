@@ -72,8 +72,7 @@ class ProductDetail extends React.Component {
               <section className="product-detail-main-left">
                 {/* Temporary place holder for Product images gallery */}
                 <div className="product-detail-img">
-                  <img src={comingSoon}></img>
-                  {/* <img src="coming-soon.jpg"></img> */}
+                    <img src={product.productImages ? product.productImages[0].product_img : comingSoon}></img>
                 </div>
                 <div className="product-discussion">
                   <ProductDiscussionContainer productId={product.id} />

@@ -2,6 +2,7 @@ class Api::ProductsController < ApplicationController
 
   def create
     # debugger
+    # sleep(5)
     @product = Product.new(product_params)
     @product.publisher_id = current_user.id
     if @product.save

@@ -1,0 +1,2 @@
+module Api::ProductImagesHelper
+end

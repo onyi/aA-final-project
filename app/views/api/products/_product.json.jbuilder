@@ -10,9 +10,6 @@ else
    json.header_img product.header_img
 end
 
-
-# json.merge! product.attributes
-
 # json.header_img product.header_img.attached? ? url_for(product.header_img) : product.header_img
 
 # json.header_img ''
@@ -24,4 +21,5 @@ end
 json.upvotes product.upvotes.count
 json.isUpvoted (current_user && current_user.upvoted_products.map{ |p| p.product_id }.include?(product.id)) ? true : false
 json.discussionCount product.discussions.count
+json.productImages product.product_images
 json.product_discussions []

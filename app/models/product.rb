@@ -34,4 +34,7 @@ class Product < ApplicationRecord
 
   # has_one_attached :header_img
 
+  has_many :product_images,
+    class_name: :ProductImage
+
 end

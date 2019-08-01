@@ -111,7 +111,11 @@
 }
 
 .product-detail-img {
-  width: 100%;
+  img{
+    width: 100%;
+    max-height: 380px;
+  }
+
 }
 
 .product-link {

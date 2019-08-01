@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_161250) do
+ActiveRecord::Schema.define(version: 2019_07_25_225627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2019_07_10_161250) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "product_discussion_votes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "discussion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discussion_id"], name: "index_product_discussion_votes_on_discussion_id"
+    t.index ["user_id"], name: "index_product_discussion_votes_on_user_id"
+  end
+
   create_table "product_discussions", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "product_id", null: false
@@ -46,6 +55,14 @@ ActiveRecord::Schema.define(version: 2019_07_10_161250) do
     t.index ["author_id"], name: "index_product_discussions_on_author_id"
     t.index ["parent_discussion_id"], name: "index_product_discussions_on_parent_discussion_id"
     t.index ["product_id"], name: "index_product_discussions_on_product_id"
+  end
+
+  create_table "product_images", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.string "product_img", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
   create_table "product_votes", force: :cascade do |t|
