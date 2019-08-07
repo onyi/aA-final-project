@@ -41,6 +41,9 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
+  has_many :upvoted_discussions,
+    class_name: :ProductDiscussionVote
+
 
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
