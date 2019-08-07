@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_225627) do
+ActiveRecord::Schema.define(version: 2019_08_07_221200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_225627) do
     t.integer "discussion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["discussion_id", "user_id"], name: "index_product_discussion_votes_on_discussion_id_and_user_id", unique: true
     t.index ["discussion_id"], name: "index_product_discussion_votes_on_discussion_id"
     t.index ["user_id"], name: "index_product_discussion_votes_on_user_id"
   end
