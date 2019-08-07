@@ -23,4 +23,7 @@ json.isUpvoted (current_user && current_user.upvoted_products.map{ |p| p.product
 json.discussionCount product.discussions.count
 if is_show
   json.productImages product.product_images
+else
+  json.productImages []
 end
+# json.productDiscussions []
