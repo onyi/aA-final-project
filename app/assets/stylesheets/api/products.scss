@@ -226,10 +226,11 @@ button.new-product-button {
 
 #product-create-button {
   color: $orange-button;
-  font-size: 36px;
-  padding: 0 20px; 
+  font-size: 1.2em;
+  margin: 0 20px; 
   :hover{
-    transition: margin-right 2s .5s;
+    transition: translateX(1em);
+    background: $button-hover-dark;
   }
 }
 
