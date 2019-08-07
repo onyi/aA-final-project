@@ -25,16 +25,23 @@ class Api::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by_id(params[:id])
+    # @product = Product.find_by_id(params[:id])
+    @product = Product.includes(:product_images, :upvotes).find_by_id(params[:id])
   end
 
   def index
+    # @products = Product.includes(:discussions, :upvotes).order(:created_at).all
+
+    @products = Product.
+      select("products.*","COUNT(pv.user_id) AS upvotes, COUNT(pd.id) AS discussion_count, products.id ").
+      joins("LEFT JOIN product_votes pv ON pv.product_id = products.id").
+      joins("LEFT JOIN product_discussions pd ON pd.product_id = products.id").
+      group("products.id")
     if params[:search_keyword]
-      @products = Product.includes(:discussions).where("title like ?", "%#{params[:search_keyword]}%")
+      @products = @products.where("title like ?", "%#{params[:search_keyword]}%")
     elsif params[:publisher_id]
-      @products = Product.includes(:discussions).where("publisher_id = ?", "#{params[:publisher_id]}")
-    else
-      @products = Product.all
+      @products = @products.where("publisher_id = ?", "#{params[:publisher_id]}")
+
       # sleep(5) # Debug loading icon
     end
     render 'api/products/index'
