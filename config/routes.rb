@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       end
     end
     resources :product_votes, only: [:create, :destroy]
+    resources :discussion_upvotes, as: :discussion_upvotes, controller: "product_discussion_votes", only: [:create, :delete]
+
   end
 
 
