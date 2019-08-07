@@ -1,10 +1,10 @@
-.nav-bar-wrapper {
+.nav-bar{
   background: $white;
   border-bottom: 2px solid #e8e8e8;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
 }
 
-.nav-bar {
+.nav-bar__wrapper {
   display: flex;
   justify-content: space-between;
   padding: 5px;
@@ -32,36 +32,27 @@
 
 }
 
-#nav-bar-signup {
-  background-color: rgb(214, 134, 30)
+#nav-bar__signup {
+  background-color: rgb(214, 134, 30);
+  :hover{
+    color: white;
+    text-decoration: coral
+  }
 }
 
-#nav-bar-signup:hover{
-  color: white;
-  text-decoration: coral
 
-}
-
-.nav-bar-action {
+.nav-bar__action {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav-bar-logo {
+.nav-bar__logo {
+  :hover{
+    color: rgb(197, 30, 1);
+  }
   font-size: 34px;
   max-width: 40px;
   max-height: 40px;
   color: coral;
-  
-}
-
-.nav-bar-logo:hover{
-  color: rgb(197, 30, 1)
-}
-
-.nav-bar-action-wrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
