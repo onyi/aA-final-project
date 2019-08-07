@@ -18,9 +18,9 @@ end
 #   json.image url_for(product.header_img)
 # end
 
-json.upvotes product.upvotes.count
+# json.upvotes product.upvotes.count
+# json.discussionCount product.discussion_count
 json.isUpvoted (current_user && current_user.upvoted_products.map{ |p| p.product_id }.include?(product.id)) ? true : false
-json.discussionCount product.discussions.count
 if is_show
   json.productImages product.product_images
 else

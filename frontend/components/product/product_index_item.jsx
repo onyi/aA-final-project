@@ -17,7 +17,7 @@ const ProductIndexItem = ({ product, editable, openProductForm, deleteProduct })
             <h3>{product.title}</h3>
             <p>{product.header}</p>
             <i className="fas fa-comments">
-              <span>{product.discussionCount}</span>
+              <span>{product.discussion_count}</span>
             </i>
           </div>
         </Link>

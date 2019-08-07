@@ -17,6 +17,8 @@ class Product < ApplicationRecord
 
   validates :title, :header, :publisher_id, :header_img, :link, presence: true
 
+  attr_accessor :discussion_count, :upvote_count
+
   has_many :upvotes,
     class_name: :ProductVote
 

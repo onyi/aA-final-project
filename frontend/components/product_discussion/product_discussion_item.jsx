@@ -27,7 +27,7 @@ class ProductDiscussionItem extends React.Component {
   postReply(e){
     e.preventDefault();
     let data = new FormData(e.currentTarget);
-    console.log(`Reply clicked; ${this.state.body}, ${this.state.id}, ${this.state.productId}`);
+    // console.log(`Reply clicked; ${this.state.body}, ${this.state.id}, ${this.state.productId}`);
     this.props.postDiscussion(this.state);
     
   }
@@ -35,7 +35,7 @@ class ProductDiscussionItem extends React.Component {
   showReplyInput(id){
     let idPrefix = `discussion-reply-${id}`;
     // e.preventDefault();
-    console.log("Display reply component");
+    // console.log("Display reply component");
     let replyElement = $(`#${idPrefix}`);
     replyElement.is(":visible") ? replyElement.hide() : replyElement.show();
   }
