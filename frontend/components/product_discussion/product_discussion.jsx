@@ -56,7 +56,7 @@ class ProductDiscussion extends React.Component {
     let discussionItemArray = [];
     if (discussions.length !== 0){
       discussions.forEach(discussion => {
-        discussionItemArray.push(<ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={isReply} level={level} postDiscussion={this.props.postDiscussion} />); 
+        discussionItemArray.push(<ProductDiscussionItem key={discussion.id} discussion={discussion} isReply={isReply} level={level} postDiscussion={this.props.postDiscussion} currentUser={this.props.currentUser} />); 
         discussionItemArray = discussionItemArray.concat(this.getDiscussions(discussion.discussionReplies, true, (level + 1) ));
       });
     }

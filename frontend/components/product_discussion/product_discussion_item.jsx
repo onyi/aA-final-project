@@ -41,7 +41,7 @@ class ProductDiscussionItem extends React.Component {
   }
 
   render(){
-    const { postDiscussion, discussion, isReply, level = 0 } = this.props;
+    const { postDiscussion, discussion, isReply, level = 0, currentUser} = this.props;
     // console.log(`discussion: ${JSON.stringify(discussion)}, isReply: ${isReply}`);
     let padding = level * 40;
     return (
@@ -70,7 +70,8 @@ class ProductDiscussionItem extends React.Component {
               <form className="discussion-reply-form" onSubmit={this.postReply} data-discussion-id={`${discussion.id}`}>
                 <input type="text" name="body" id={`discussion-reply-text-${discussion.id}`} onChange={this.update}/>
                 <input type="hidden" name="id" value={`${discussion.id}`} />
-                <input type="submit" className="button" value="Reply" />
+                {currentUser ? <input type="submit" className="button" value="Reply" /> : <Link to="/login" ><button className="button">Reply</button></Link>}
+                
               </form>
             </div>
           </div>
