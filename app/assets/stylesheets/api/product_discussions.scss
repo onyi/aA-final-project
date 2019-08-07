@@ -25,6 +25,8 @@
 .discussion {
   width: 100%;
   padding: 10px;
+  box-sizing: border-box;
+  display: inline-block
 }
 
 .discussion-reply {
@@ -42,11 +44,6 @@
   width: 30px;
   height: 30px;
   padding-right: 10px;
-}
-
-.discussion {
-  width: 100%;
-  display: inline-block
 }
 
 .discussion-user-detail {
