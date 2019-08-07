@@ -13,6 +13,8 @@ class ProductDiscussionVote < ApplicationRecord
 
   validates :discussion_id, :user_id, presence: true
 
+  attr_reader :is_upvoted
+
   belongs_to :discussion,
     foreign_key: :discussion_id,
     class_name: :ProductDiscussion
@@ -21,5 +23,8 @@ class ProductDiscussionVote < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
+  def is_upvoted=(bool)
+    @is_upvoted = bool
+  end
 
 end

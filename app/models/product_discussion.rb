@@ -32,6 +32,8 @@ class ProductDiscussion < ApplicationRecord
     class_name: :ProductDiscussion
 
   has_many :upvotes,
+    foreign_key: :discussion_id,
     class_name: :ProductDiscussionVote
+    
 
 end
