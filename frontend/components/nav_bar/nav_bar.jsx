@@ -6,13 +6,13 @@ export default ({ currentUser, logoutUser}) => {
   let display = currentUser ? (
     <div className="nav-bar__action">
       <span>{currentUser.username}</span>
-      <Link to={`/user/${currentUser.id}`}><i className="fas fa-user"></i></Link>
-      <a onClick={logoutUser}>Logout</a>
+      <Link to={`/user/${currentUser.id}`}><i className="fas fa-user link-button"></i></Link>
+      <a className="link-button" onClick={logoutUser}>Logout</a>
     </div>
   ) : (
     <div className="nav-bar__action">
-      <Link to="/login" >Sign In</Link>
-      <Link to={`/signup`} id="nav-bar__signup">Sign Up</Link>
+      <Link to="/login" className="link-button" >Sign In</Link>
+      <Link to={`/signup`} id="nav-bar__signup" className="link-button" >Sign Up</Link>
     </div>
   );
 
