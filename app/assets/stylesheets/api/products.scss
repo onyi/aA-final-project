@@ -228,9 +228,10 @@ button.new-product-button {
   color: $orange-button;
   font-size: 1.2em;
   margin: 0 20px; 
+  padding: 5px;
   :hover{
     transition: translateX(1em);
-    background: $button-hover-dark;
+    background-color: $button-hover-dark;
   }
 }
 
