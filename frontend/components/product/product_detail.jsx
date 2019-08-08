@@ -104,9 +104,11 @@ class ProductDetail extends React.Component {
                 
                 {product.description ? 
                 <div className="product-description-wrapper">
-                  <h3>Description</h3>
-                  <br />
-                  <p>{product.description}</p>
+                  <div className="product-description">
+                    <h3>Description</h3>
+                    <br />
+                    <p>{product.description}</p>
+                  </div>
                 </div>
                 : null }
 
