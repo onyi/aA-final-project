@@ -25,8 +25,7 @@ class Api::ProductsController < ApplicationController
   end
 
   def show
-    # @product = Product.find_by_id(params[:id])
-    @product = Product.includes(:product_images, :upvotes).find_by_id(params[:id])
+    @product = Product.includes(:product_images, :upvotes).find_by_id(params[:id])    
   end
 
   def index
