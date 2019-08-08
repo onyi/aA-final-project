@@ -60,11 +60,11 @@ class ProductDetail extends React.Component {
                 <img className="product-detail-header-img" src={product.header_img}></img>
               </div>
               <div className="product-detail-header-container">
-                <div className="field">
-                  <h1>{product.title}</h1>
+                <div className="field product-detail__title">
+                  <span>{product.title}</span>
                 </div>
-                <div className="field">
-                  <h3>{product.header}</h3>
+                <div className="field product-detail__header">
+                  <span>{product.header}</span>
                 </div>
               </div>
             </div>
