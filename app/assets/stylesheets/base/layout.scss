@@ -145,3 +145,23 @@ input[type="text"] {
 textarea{
 	border: 1px solid grey;
 }
+
+.link-button {
+	border: 1px solid $light-gray;
+	box-shadow: 1px 1px 1px $light-gray;
+	background-color: white;
+  padding: 0.5em 0.5em;
+  margin: 0 5px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+	border-radius: 5px;
+	&:hover {
+		background-color: $button-hover-dark;
+		box-shadow: 1px 1px 1px darkblue;
+		color: orange;
+		text-decoration: none;
+	border: 1px solid $dark-gray;
+	}
+}
