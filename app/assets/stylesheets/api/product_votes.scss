@@ -6,7 +6,7 @@
 .product-vote-button {
   width: 4.5em;
   height: 5em;
-  :focus{
+  &:focus{
     outline: none;
   }
 }
@@ -19,10 +19,6 @@
   flex-direction: column;
   padding-left: 70px;
   padding-right:20px;
-}
-
-.product-upvote-detail {
-  
 }
 
 .product-upvote-wrapper {
@@ -43,16 +39,14 @@
   transition: all 0.3s;
   text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
   border-radius: 0.25em;
+  &:hover {
+    display: inline-block;
+    position: relative
+  }
 //   margin: 0 0.3em 0.3em 0;
   i {
     font-size: 1.2em;
   }
-  
-}
-
-.product-upvote:hover {
-  display: inline-block;
-  position: relative
 }
 
 .product-upvote-isupvoted {
@@ -60,28 +54,30 @@
   i {
     color: $orange-accent
   }
-}
-.product-upvote-isupvoted:hover {
-  border: 1px $gray solid;
-  color: $dark-gray;
-  i {
+  &:hover {
+    border: 1px $gray solid;
     color: $dark-gray;
-  }
-  > p {
-  text-decoration: line-through;
+    i {
+      color: $dark-gray;
+    }
+    > p {
+      text-decoration: line-through;
+      transition: ease-out 0.25s;
+    }
   }
 }
 
 .product-upvote-notupvoted {
   border: 1px $lightest-gray solid;
-}
-.product-upvote-notupvoted:hover {
-  background-color: $orange-button-hover;
-  i {
-    color: $orange-accent;
-    // font-size: 1.5em;
+  &:hover {
+    background-color: $orange-button-hover;
+    .fa-caret-up {
+      color: $orange-accent;
+      // font-size: 1.5em;
+      transform: translateY(-0.3em);
+      transition: ease-in 0.25s;
+    }
   }
-
 }
 
 
