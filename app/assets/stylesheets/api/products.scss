@@ -229,10 +229,11 @@ button.new-product-button {
   font-size: 1.2em;
   margin: 0 20px; 
   padding: 5px;
-  :hover{
-    transition: translateX(1em);
-    background-color: $button-hover-dark;
+  .fa-plus:hover{
+    transform: scale(1.2, 1.2);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1), 0.25s
   }
+
 }
 
 
