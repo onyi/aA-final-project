@@ -140,7 +140,7 @@ class User extends React.Component {
         </div>
         <div className="user-products-wrapper">
           <h1>{products.length} Published Product{products.length > 1 ? "s" : ""}</h1>
-          <ul className="product-list-main">
+          <ul className="product-list-index">
             {products.map(
               product =>
                 <ProductIndexItem
