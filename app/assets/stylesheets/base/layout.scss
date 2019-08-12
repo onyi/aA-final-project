@@ -165,3 +165,18 @@ textarea{
 	border: 1px solid $dark-gray;
 	}
 }
+
+.list-container{
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background:ghostwhite;
+	margin-bottom: 0.3em;
+	border-radius: 5px;
+}
+
+.container-header{
+	padding: 0.3em 0;
+	margin-bottom: 0.5em;
+}

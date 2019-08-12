@@ -8,7 +8,7 @@ const ProductIndexItem = ({ product, editable, openProductForm, deleteProduct })
 
   return (
     <li>
-      <div className="product-list-container">
+      <div className="product-list-container list-container">
         <Link to={`/product/${product.id}`} className="product-list-link">
           <div>
             <img className="product-header-image" src={product.header_img} />

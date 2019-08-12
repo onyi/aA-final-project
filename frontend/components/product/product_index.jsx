@@ -39,20 +39,42 @@ class ProductIndex extends React.Component {
       return (<LoadingIcon />)
     }else{
       return (
-        <div>
-          <ul className="product-list-main">
-            {products.map( 
-              product => 
-                <ProductIndexItem 
-                  key={product.id} 
-                  product={product} 
-                  productId={product.id}
-                  postUpvote={postUpvote}
-                  deleteUpvote={deleteUpvote}
-                  deleteProduct={deleteProduct}
-                /> 
-            )}
-          </ul>
+        <div className="product-list">
+          <div className="product-list-main">
+            <div className="container-header">
+              <h3>Products</h3>
+            </div>
+            <ul className="product-list-index">
+              {products.map( 
+                product => 
+                  <ProductIndexItem 
+                    key={product.id} 
+                    product={product} 
+                    productId={product.id}
+                    postUpvote={postUpvote}
+                    deleteUpvote={deleteUpvote}
+                    deleteProduct={deleteProduct}
+                  /> 
+              )}
+            </ul>
+          </div>
+          <div className="product-list-sidebar">
+            <div>
+              <h3 className="container-header">About</h3>
+              <div className="list-container about">
+                <p>Product Hub is a place for web user or creator to share products (both physical and digital) with other people!</p>
+                <p>Creator's Profile</p>
+                <div className="about-creator">
+                  <a class="nav-link" href="https://github.com/onyi" target="_blank">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a class="nav-link" href="https://www.linkedin.com/in/onyicho/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )
     }

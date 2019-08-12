@@ -2,24 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.product-list-main {
-  max-width: 50vw;
-  margin: 0 auto;
+.about{
+  flex-direction: column;
+  p{ 
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 0.5em;
+  }
 }
 
-.product-list-main li {
-  list-style: none;
+.about-creator{
+  margin: 1em 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 2em;
+  i{
+    color: $orange-button;
+    &:hover{
+      color: $orange-button-hover;
+    }
+  }
+}
+
+.product-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.product_list-main{
+  width: 60vw;
+}
+
+.product-list-sidebar{
+  width: 20vw;
+  margin-left: 2em;
+}
+
+.product-list-index {
+  max-width: 50vw;
+  margin: 0 auto;
+  li {
+    list-style: none;
+  }
 }
 
 .product-list-container {
-  border: 1px solid lightgray;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   min-width: 500px;
-  background:ghostwhite;
-  margin-bottom: 0.3em;
 }
 
 
