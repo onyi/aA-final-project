@@ -29,11 +29,11 @@ class Api::ProductDiscussionsController < ApplicationController
 
 
   def show
-    @product_discussion = ProductDiscussion.find_by_id(params[:id])
+    @product_discussion = ProductDiscussion.includes(:author, :upvotes).find_by_id(params[:id])
   end
 
   def index
-    @product_discussions = ProductDiscussion.includes(:author).includes(:discussion_replies).where("product_id = #{params[:product_id]}").where("parent_discussion_id IS NULL").order('created_at ASC')
+    @product_discussions = ProductDiscussion.includes(:author, :upvotes).includes(:discussion_replies).where("product_id = #{params[:product_id]}").where("parent_discussion_id IS NULL").order('created_at ASC')
   end
   
 
