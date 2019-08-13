@@ -7,6 +7,9 @@ import {
   deleteDiscussionVote
 } from '../../util/product_discussion_vote_api_util';
 
+import {
+  renderError
+} from '../../actions/error_action'
 
 const msp = (state = {}, ownProps) => {
 
@@ -27,7 +30,8 @@ const msp = (state = {}, ownProps) => {
 const mdp = (dispatch) => {
   return {
     postDiscussionVote: (discussionId) => postDiscussionVote(discussionId), 
-    deleteDiscussionVote: (discussionId) => deleteDiscussionVote(discussionId) 
+    deleteDiscussionVote: (discussionId) => deleteDiscussionVote(discussionId),
+    renderError: (errorMsg, id) => dispatch(renderError(errorMsg, id))
   }
 }
 

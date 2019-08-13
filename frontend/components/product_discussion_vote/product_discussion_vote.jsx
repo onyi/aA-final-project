@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Link} from 'react-router-dom';
+import { renderError } from '../../actions/error_action';
 
 class ProductDiscussionVote extends React.Component{
   constructor(props){
@@ -26,7 +27,10 @@ class ProductDiscussionVote extends React.Component{
           isUpvoted: false
         })
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        // console.log(err);
+        renderError(err.responseJSON)
+      });
   }
 
   postDiscussionVote() {
@@ -37,7 +41,10 @@ class ProductDiscussionVote extends React.Component{
           isUpvoted: true
         })
       })
-      .catch( err => console.log(err));
+      .catch( err => {
+        // console.log(err);
+        renderError(err.responseJSON)
+      });
   }
 
 
