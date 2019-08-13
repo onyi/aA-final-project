@@ -3,8 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
-
 .product-discussion-container {
   display: flex;
   flex-direction: column;
@@ -90,12 +88,6 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  > div {
-    padding-right: 5em;
-    font-size: 0.8em;
-    color: $gray;
-    font-weight: 500;
-  }
 }
 
 .discussion-reply-component {
@@ -113,4 +105,18 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+
+
+.discussion__component {
+  cursor: pointer;
+  margin-right: 5em;
+  font-size: 0.8em;
+  color: $gray;
+  font-weight: 500;
+  a {
+    text-decoration: none;
+    background-color: inherit;
+    color: $gray;
+  }
 }
