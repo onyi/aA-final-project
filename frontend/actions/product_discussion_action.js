@@ -5,7 +5,13 @@ export const REMOVE_DISCUSSION = 'REMOVE_DISCUSSION';
 export const START_LOADING_DISCUSSIONS = 'START_LOADING_DISCUSSIONS';
 export const FINISH_LOADING_DISCUSSIONS = 'FINISH_LOADING_DISCUSSIONS';
 
-import * as ProductDiscussionApi from '../util/product_discussion.util';
+export const START_LOADING_DISCUSSION_UPVOTE = 'START_LOADING_DISCUSSION_UPVOTE';
+export const FINISH_LOADING_DISCUSSIONS_UPVOTE = 'FINISH_LOADING_DISCUSSIONS_UPVOTE';
+export const RECEIVE_DISCUSSION_UPVOTE = 'RECEIVE_DISCUSSION_UPVOTE'; 
+
+import * as ProductDiscussionApi from '../util/product_discussion_util';
+import * as ProductDiscussionVoteApi from '../util/product_discussion_vote_api_util';
+
 
 import {
   renderError,
@@ -49,6 +55,24 @@ export const finishLoadingDiscussions = () => {
   }
 };
 
+export const startLoadingUpvote = (discussionId) => ({
+  type: START_LOADING_DISCUSSION_UPVOTE,
+  discussionId
+});
+
+export const finishLoadingUpvote = (discussionId) => ({
+  type: FINISH_LOADING_DISCUSSIONS_UPVOTE,
+  discussionId
+});
+
+export const receiveDiscussionUpvote = (upvoteCount, discussionId, userId, isUpvoted) => ({
+  type: RECEIVE_DISCUSSION_UPVOTE,
+  upvoteCount,
+  discussionId,
+  userId,
+  isUpvoted
+});
+
 export const postDiscussion = (discussion) => dispatcher => {
   // console.log(`ProductDiscussionApi  postDiscussion ${JSON.stringify(discussion)}`);
 
@@ -83,6 +107,41 @@ export const getDiscussion = (productId, discussionId) => dispatcher => {
   return ProductDiscussionApi.getDiscussion(productId, discussionId)
     .then(discussion => dispatcher(receiveDiscussion(discussion)))
     .catch(errors => dispatcher(renderError(errors)))
+};
+
+
+export const postDiscussionVote = (discussionId) => dispatch => {
+  dispatch(startLoadingUpvote(discussionId));
+  return ProductDiscussionVoteApi.postDiscussionVote(discussionId)
+    .then(discussionVote => {
+      dispatch(
+        receiveDiscussionUpvote(
+          discussionVote.upvotes,
+          discussionVote.id,
+          discussionVote.user_id,
+          discussionVote.isUpvoted
+        )
+      );
+      dispatch(finishLoadingUpvote(productId));
+    })
+    .catch(errors => dispatch(receiveProductErrors(errors)))
+};
+
+export const deleteDiscussionVote = (discussionId) => dispatch => {
+  dispatch(startLoadingUpvote(discussionId));
+  return ProductDiscussionVoteApi.deleteDiscussionVote(discussionId)
+    .then(discussionVote => {
+      dispatch(
+        receiveDiscussionUpvote(
+          discussionVote.upvotes,
+          discussionVote.id,
+          discussionVote.user_id,
+          discussionVote.isUpvoted
+        )
+      );
+      dispatch(finishLoadingUpvote(productId));
+    })
+    .catch(errors => dispatch(receiveProductErrors(errors)))
 };
 
 

@@ -16,6 +16,8 @@ import {
 import {
   START_LOADING_DISCUSSIONS,
   FINISH_LOADING_DISCUSSIONS,
+  START_LOADING_DISCUSSION_UPVOTE,
+  FINISH_LOADING_DISCUSSIONS_UPVOTE
 } from '../actions/product_discussion_action'
 
 import merge from 'lodash/merge';
@@ -26,7 +28,8 @@ const productLoadingReducer = (state =
     upvoteLoading: {}, 
     detailLoading: false, 
     publishedProductLoading: false,
-    discussionsLoading: false
+    discussionsLoading: false,
+    discussionUpvoteLoading: false
   }, action) => {
   Object.freeze(state);
   switch (action.type) {
@@ -58,6 +61,10 @@ const productLoadingReducer = (state =
       return merge({}, state, { discussionsLoading: true });
     case FINISH_LOADING_DISCUSSIONS:
       return merge({}, state, { discussionsLoading: false });
+    case START_LOADING_DISCUSSION_UPVOTE:
+      return merge({}, state, { discussionUpvoteLoading: { [action.discussionId]: true } });
+    case FINISH_LOADING_DISCUSSIONS_UPVOTE:
+      return merge({}, state, { discussionUpvoteLoading: { [action.discussionId]: false } });
     default:
       return state;
   }
