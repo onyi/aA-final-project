@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import { Link, withRouter } from 'react-router-dom';
 
+import ProductDiscussionVoteContainer from '../product_discussion_vote/product_discussion_vote_container';
+
 
 class ProductDiscussionItem extends React.Component {
   constructor(props){
@@ -56,13 +58,19 @@ class ProductDiscussionItem extends React.Component {
           <div className="discussion-content-wrapper">
             <span>{discussion.body}</span>
             <div className="discussion-component-wrapper">
-              <div>
+              {/* TODO: Use Product Discussion Vote with onClick listener */}
+              <ProductDiscussionVoteContainer 
+                discussionVoteCount={discussion.upvotes}
+                discussionId={discussion.id}
+                isUpvoted={discussion.isUpvoted}
+              />
+              {/* <div>
                 <span>Upvote</span>
-              </div>
-              <div>
+              </div> */}
+              <div className="discussion__component">
                 <span onClick={() => this.showReplyInput(discussion.id)}>Reply</span>
               </div>
-              <div>
+              <div className="discussion__component">
                 <span>{moment(discussion.created_at).format("YYYY-MM-DD HH:mm:ss zz")}</span>
               </div>
             </div>
