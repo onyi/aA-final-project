@@ -1,3 +1,16 @@
 // Place all the styles related to the api/ProductDiscussionVotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.discussion-upvoted{
+  color: $orange-button;
+  font-weight: 700;
+
+}
+
+.discussion-notupvoted {
+  font-weight: 600;
+}
