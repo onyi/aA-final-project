@@ -25,6 +25,21 @@
   }
 }
 
+.advertisement{
+  margin: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  p{ 
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    // margin: 0.5em;
+  }
+  img{
+    margin-left: 2em;
+  }
+}
+
 .product-list {
   display: flex;
   justify-content: flex-start;
