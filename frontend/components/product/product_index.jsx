@@ -74,6 +74,15 @@ class ProductIndex extends React.Component {
                 </div>
               </div>
             </div>
+            <div>
+              <h3 className="container-header">Advertisement</h3>
+              <div className="list-container ">
+                <div className="advertisement">
+                  <p>Join App Academy Today!</p>
+                  <img className="app-academy-logo" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/2005/s300/logo-emblem-red-1000-1-.jpg" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )
