@@ -53,6 +53,11 @@
 .product-list-sidebar{
   width: 20vw;
   margin-left: 2em;
+  > div{
+    position: sticky;
+    // position: -webkit-sticky;
+    top: 0; /* required */
+  }
 }
 
 .product-list-index {

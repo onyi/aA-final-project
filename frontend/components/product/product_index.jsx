@@ -60,26 +60,28 @@ class ProductIndex extends React.Component {
           </div>
           <div className="product-list-sidebar">
             <div>
-              <h3 className="container-header">About</h3>
-              <div className="list-container about">
-                <p>Product Hub is a place for web user or creator to share products (both physical and digital) with other people!</p>
-                <p>Creator's Profile</p>
-                <div className="about-creator">
-                  <a class="nav-link" href="https://github.com/onyi" target="_blank">
-                    <i class="fab fa-github"></i>
-                  </a>
-                  <a class="nav-link" href="https://www.linkedin.com/in/onyicho/" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
+              <div>
+                <h3 className="container-header">About</h3>
+                <div className="list-container about">
+                  <p>Product Hub is a place for web user or creator to share products (both physical and digital) with other people!</p>
+                  <p>Creator's Profile</p>
+                  <div className="about-creator">
+                    <a class="nav-link" href="https://github.com/onyi" target="_blank">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a class="nav-link" href="https://www.linkedin.com/in/onyicho/" target="_blank">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <h3 className="container-header">Advertisement</h3>
-              <div className="list-container ">
-                <div className="advertisement">
-                  <p>Join App Academy Today!</p>
-                  <img className="app-academy-logo" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/2005/s300/logo-emblem-red-1000-1-.jpg" />
+              <div>
+                <h3 className="container-header">Advertisement</h3>
+                <div className="list-container ">
+                  <div className="advertisement">
+                    <p>Join App Academy Today!</p>
+                    <img className="app-academy-logo" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/2005/s300/logo-emblem-red-1000-1-.jpg" />
+                  </div>
                 </div>
               </div>
             </div>
