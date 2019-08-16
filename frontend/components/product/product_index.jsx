@@ -66,11 +66,11 @@ class ProductIndex extends React.Component {
                   <p>Product Hub is a place for web user or creator to share products (both physical and digital) with other people!</p>
                   <p>Creator's Profile</p>
                   <div className="about-creator">
-                    <a class="nav-link" href="https://github.com/onyi" target="_blank">
-                      <i class="fab fa-github"></i>
+                    <a className="nav-link" href="https://github.com/onyi" target="_blank">
+                      <i className="fab fa-github"></i>
                     </a>
-                    <a class="nav-link" href="https://www.linkedin.com/in/onyicho/" target="_blank">
-                      <i class="fab fa-linkedin"></i>
+                    <a className="nav-link" href="https://www.linkedin.com/in/onyicho/" target="_blank">
+                      <i className="fab fa-linkedin"></i>
                     </a>
                   </div>
                 </div>
