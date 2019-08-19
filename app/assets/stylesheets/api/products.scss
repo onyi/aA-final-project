@@ -44,6 +44,11 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
+
+  @media screen and (max-width: 1000px){
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .product_list-main{
@@ -57,6 +62,14 @@
     position: sticky;
     // position: -webkit-sticky;
     top: 0; /* required */
+  }
+  @media screen and (max-width: 1000px){
+    width: 100%;
+    > div {
+      width: 60vw;
+      margin: 0 auto;
+    }
+
   }
 }
 
