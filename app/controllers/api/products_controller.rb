@@ -32,10 +32,10 @@ class Api::ProductsController < ApplicationController
     # @products = Product.includes(:discussions, :upvotes).order(:created_at).all
 
     @products = Product.
-      select("products.*","COUNT(pv.user_id) AS upvotes, COUNT(pd.id) AS discussion_count, products.id ").
-      joins("LEFT JOIN product_votes pv ON pv.product_id = products.id").
-      joins("LEFT JOIN product_discussions pd ON pd.product_id = products.id").
-      group("products.id")
+      select("products.*","coalesce(pv.upvotes, 0) as upvotes, coalesce(pd.discussion_count, 0) AS discussion_count").
+      joins("LEFT JOIN (select product_id, COUNT(id) AS upvotes FROM product_votes group by product_id) pv ON pv.product_id = products.id").
+      joins("LEFT JOIN (select product_id, COUNT(id) as discussion_count from product_discussions group by product_id) pd ON pd.product_id = products.id").
+      order("CREATED_AT desc")
     if params[:search_keyword]
       @products = @products.where("title like ?", "%#{params[:search_keyword]}%")
     elsif params[:publisher_id]

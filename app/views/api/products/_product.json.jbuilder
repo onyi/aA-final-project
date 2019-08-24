@@ -23,7 +23,7 @@ end
 json.isUpvoted (current_user && current_user.upvoted_products.map{ |p| p.product_id }.include?(product.id)) ? true : false
 if is_show
   json.productImages product.product_images
-  json.upvotes product.upvotes.count
+  # json.upvotes product.upvotes.count
 else
   json.productImages []
 end
