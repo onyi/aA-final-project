@@ -74,8 +74,8 @@ class Api::ProductsController < ApplicationController
       offset(offset).
       limit(limit)
       
-    if params[:search_keyword]
-      @products = @products.where("CONCAT(title, header, description) ilike ?", "%#{params[:search_keyword]}%")
+    if params[:keyword]
+      @products = @products.where("CONCAT(title, header, description) ilike ?", "%#{params[:keyword]}%")
     elsif params[:publisher_id]
       @products = @products.where("publisher_id = ?", "#{params[:publisher_id]}")
     end
