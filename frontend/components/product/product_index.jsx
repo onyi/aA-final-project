@@ -7,6 +7,8 @@ import ProductVoteContainer from '../product_vote/product_vote_container';
 
 import { Link } from 'react-router-dom';
 
+import moment from 'moment';
+
 
 
 
@@ -45,7 +47,10 @@ class ProductIndex extends React.Component {
               <h3>Products</h3>
             </div>
             <ul className="product-list-index">
-              {products.map( 
+              {products.sort( (a,b) => {
+                return b.id - a.id;
+              })
+              .map( 
                 product => 
                   <ProductIndexItem 
                     key={product.id} 
