@@ -31,18 +31,18 @@ class Api::ProductsController < ApplicationController
   def index
     # @products = Product.includes(:discussions, :upvotes).order(:created_at).all
 
+    offset = params[:offset] || 0
+    limit = params[:limit] || 20
+
     @products = Product.
       select("products.*","coalesce(pv.upvotes, 0) as upvotes, coalesce(pd.discussion_count, 0) AS discussion_count").
       joins("LEFT JOIN (select product_id, COUNT(id) AS upvotes FROM product_votes group by product_id) pv ON pv.product_id = products.id").
       joins("LEFT JOIN (select product_id, COUNT(id) as discussion_count from product_discussions group by product_id) pd ON pd.product_id = products.id").
-      order("CREATED_AT desc")
-    if params[:search_keyword]
-      @products = @products.where("title like ?", "%#{params[:search_keyword]}%")
-    elsif params[:publisher_id]
-      @products = @products.where("publisher_id = ?", "#{params[:publisher_id]}")
+      order("CREATED_AT desc").
+      offset(offset).
+      limit(limit)
 
       # sleep(5) # Debug loading icon
-    end
     render 'api/products/index'
   end
 
@@ -60,6 +60,30 @@ class Api::ProductsController < ApplicationController
     end
 
   end
+
+  def search
+
+    offset = params[:offset] || 0
+    limit = params[:limit] || 20
+
+    @products = Product.
+      select("products.*","coalesce(pv.upvotes, 0) as upvotes, coalesce(pd.discussion_count, 0) AS discussion_count").
+      joins("LEFT JOIN (select product_id, COUNT(id) AS upvotes FROM product_votes group by product_id) pv ON pv.product_id = products.id").
+      joins("LEFT JOIN (select product_id, COUNT(id) as discussion_count from product_discussions group by product_id) pd ON pd.product_id = products.id").
+      order("CREATED_AT desc").
+      offset(offset).
+      limit(limit)
+      
+    if params[:search_keyword]
+      @products = @products.where("CONCAT(title, header, description) ilike ?", "%#{params[:search_keyword]}%")
+    elsif params[:publisher_id]
+      @products = @products.where("publisher_id = ?", "#{params[:publisher_id]}")
+    end
+
+    render 'api/products/index'
+
+  end
+
 
   private 
 
