@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ProductSearch extends React.Component{
 
@@ -35,7 +36,10 @@ class ProductSearch extends React.Component{
     render(){
 
         let searchTextHolder = "Search product title"
-
+        const { location } = this.props;
+        if (!location.pathname.match(/^\/$/)){
+          return null;
+        }
         return(
             <div className="product-search-wrapper">
                 <div className="product-search">
@@ -55,4 +59,4 @@ class ProductSearch extends React.Component{
     }
 }
 
-export default ProductSearch;
+export default withRouter(ProductSearch);
