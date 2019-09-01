@@ -23,7 +23,7 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount(){
-    this.props.getProduct(this.props.match.params.productId);
+    this.props.getProduct(this.props.productId);
   }
 
   componentDidUpdate(prevProp){
@@ -40,8 +40,11 @@ class ProductDetail extends React.Component {
 
   hideModal(e) {
     e.stopPropagation();
+    if(this.props.onClose){
+      this.props.onClose();
+    }
     this.setState({ show: false, errors: [] });
-    this.props.history.goBack();
+    // this.props.history.goBack();
   }
 
   render(){

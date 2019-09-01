@@ -5,10 +5,12 @@ import ProductDetail from './product_detail';
 import { fetchProduct } from '../../actions/product_action';
 
 const msp = (state = {}, ownProps) => {
+  let productId = ownProps.productId || ownProps.match.params.productId;
   return {
-    product: state.entities.products[ownProps.match.params.productId],
+    product: state.entities.products[productId],
     loading: state.ui.loading.product.detailLoading,
-    show: true
+    show: true,
+    onClose: ownProps.onClose
   }
 };
 

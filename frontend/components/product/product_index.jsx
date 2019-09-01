@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 
+import ProductDetailContainer from './product_detail_container';
+
 
 
 
@@ -18,8 +20,11 @@ class ProductIndex extends React.Component {
     super(props);
     // console.log(`ProductIndex Constructor: ${JSON.stringify(props)} `);
     this.state = {
-      loading: true
+      loading: true,
+      modalOpen: false,
+      productToShow: null
     }
+    this.showProductDetail = this.showProductDetail.bind(this);
   }
 
   componentDidMount(){
@@ -29,6 +34,21 @@ class ProductIndex extends React.Component {
   }
 
   componentDidUpdate(){
+
+  }
+
+  showProductDetail(productId){
+    if(this.state.modalOpen){
+      this.setState({
+        modalOpen: false,
+        productToShow: null
+      })
+    }else{
+      this.setState({
+        modalOpen: true,
+        productToShow: productId
+      })
+    }
 
   }
 
@@ -42,6 +62,7 @@ class ProductIndex extends React.Component {
     }else{
       return (
         <div className="product-list">
+          { this.state.modalOpen ? <ProductDetailContainer productId={this.state.productToShow} onClose={this.showProductDetail} /> : ""}
           <div className="product-list-main">
             <div className="container-header">
               <h3>Products</h3>
@@ -59,6 +80,7 @@ class ProductIndex extends React.Component {
                     postUpvote={postUpvote}
                     deleteUpvote={deleteUpvote}
                     deleteProduct={deleteProduct}
+                    showProductDetail={this.showProductDetail}
                   /> 
               )}
             </ul>
