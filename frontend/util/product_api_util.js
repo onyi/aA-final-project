@@ -14,7 +14,7 @@ export const fetchProduct = (id) => (
 
 export const fetchProductByPublisher = (publisher_id) => {
   return $.ajax({
-    url: `api/products?publisher_id=${publisher_id}`,
+    url: `api/products/search?publisher_id=${publisher_id}`,
     method: "GET"
   })
 }
