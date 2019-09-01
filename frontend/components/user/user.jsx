@@ -4,16 +4,23 @@ import ProductIndexItem from '../product/product_index_item';
 
 import LoadingIcon from '../loading_icon';
 
+import ProductDetailContainer from '../product/product_detail_container';
+
 class User extends React.Component {
 
   constructor(props){
     super(props);
     // this.user = this.props.user || {};
     this.state = this.props.user;
+    this.setState({
+      modalOpen: false,
+      productToShow: null
+    });
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.fetchProfileImage = this.fetchProfileImage.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.showProductDetail = this.showProductDetail.bind(this);
   }
 
   fetchProfileImage(){
@@ -79,6 +86,22 @@ class User extends React.Component {
     } else {
       this.setState({ profile_img: "", imageFile: null });
     }
+  }
+
+  showProductDetail(productId){
+    console.log(`Detail clicked`);
+    if(this.state.modalOpen){
+      this.setState({
+        modalOpen: false,
+        productToShow: null
+      })
+    }else{
+      this.setState({
+        modalOpen: true,
+        productToShow: productId
+      })
+    }
+
   }
 
   render(){
@@ -149,10 +172,12 @@ class User extends React.Component {
                   productId={product.id}
                   editable={true}
                   deleteProduct={deleteProduct}
+                  showProductDetail={this.showProductDetail}
                 />
             )}
           </ul>
         </div>
+        { this.state.modalOpen ? <ProductDetailContainer productId={this.state.productToShow} onClose={this.showProductDetail} /> : ""}
       </div>
     );
   }
