@@ -92,6 +92,16 @@ export const finishDeletingProduct = () => ({
   type: FINISH_DELETING_PRODUCT
 });
 
+export const startLoadingAllProducts = () => ({
+  type: START_LOADING_ALL_PRODUCTS,
+  loading: true
+});
+
+export const finishLoadingAllProducts = () => ({
+  type: FINISH_LOADING_ALL_PRODUCTS,
+  loading: false
+});
+
 
 
 
@@ -112,11 +122,11 @@ export const receiveProductErrors = (errors, id) => ({
 });
 
 export const fetchAllProducts = () => dispatch => {
-  dispatch({ type: START_LOADING_ALL_PRODUCTS, loading: true });
+  dispatch(startLoadingAllProducts());
   return ProductApiUtil.fetchAllProducts()
     .then( products => {
       dispatch(receiveProducts(products));
-      dispatch({ type: FINISH_LOADING_ALL_PRODUCTS });
+      dispatch(finishLoadingAllProducts());
     })
     .catch(errors => { dispatch(receiveProductErrors(errors)) } )
 };
@@ -237,3 +247,19 @@ export const deleteProduct = (productId) => dispatch => {
       dispatch(finishDeletingProduct());
     })
 };
+
+
+export const searchProduct = (keyword, offset, limit) => dispatch => {
+  console.dir(`search action`);
+  dispatch(startLoadingAllProducts());
+  return ProductApiUtil.searchProduct(keyword, offset, limit)
+    .then( products => {
+      dispatch(receiveProducts(products));
+      dispatch(finishLoadingAllProducts());
+    })
+    .catch( errors => {
+      let errorMsg = errors.responseJSON;
+      dispatch(renderError(errorMsg, randomNumber(5)));
+      dispatch(finishLoadingAllProducts());
+    })
+}

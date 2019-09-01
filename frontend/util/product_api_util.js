@@ -65,6 +65,13 @@ export const deleteProduct = (productId) => {
   })
 }
 
+export const searchProduct = (keyword) => {
+  return $.ajax({
+    url: `api/products/search?keyword=${keyword}`,
+    method: `GET`
+  })
+}
+
 
 const createProductForm = (product) => {
   const formData = new FormData();

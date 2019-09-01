@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Link} from 'react-router-dom';
+import ProductSearchContainer from '../search/product_search_container';
 
 export default ({ currentUser, logoutUser}) => {
   let display = currentUser ? (
@@ -23,6 +24,9 @@ export default ({ currentUser, logoutUser}) => {
         {/* <Link to="/">
           <h1 className="nav-bar-logo"></h1>
         </Link> */}
+
+        <ProductSearchContainer />
+
         <div className="nav-bar__action">
           <Link to="/product/create" id="product-create-button">
             <i className="fas fa-plus" placeholder="Create New Product"></i>
