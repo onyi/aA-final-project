@@ -11,6 +11,8 @@ import {
   FINISH_UPDATING_PRODUCT,
   START_LOADING_PUBLISHER_PRODUCTS,
   FINISH_LOADING_PUBLISHER_PRODUCTS,  
+  START_LOADING_PARTIAL_PRODUCTS,
+  FINISH_LOADING_PARTIAL_PRODUCTS
 } from '../actions/product_action';
 
 import {
@@ -37,6 +39,10 @@ const productLoadingReducer = (state =
       return merge({}, state, { indexLoading: true });
     case FINISH_LOADING_ALL_PRODUCTS:
       return merge({}, state, { indexLoading: false });
+    case START_LOADING_PARTIAL_PRODUCTS:
+        return merge({}, state, { indexPartialLoading: true });
+    case FINISH_LOADING_PARTIAL_PRODUCTS:
+      return merge({}, state, { indexPartialLoading: false });
     case START_LOADING_PRODUCT:
       return merge({}, state, { detailLoading: true });
     case FINISH_LOADING_PRODUCT:
