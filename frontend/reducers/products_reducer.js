@@ -14,15 +14,15 @@ import {
 const productsReducer = (state = {}, action) => {
 
   Object.freeze(state);
+  let newState = merge({}, state);
   switch(action.type){
     case RECEIVE_PRODUCTS:
-      return merge({}, action.products);
-    case RECEIVE_PUBLISHER_PRODUCTS: //Just in case
+      return merge(newState, action.products);
+    case RECEIVE_PUBLISHER_PRODUCTS:
       return merge({}, action.products);
     case RECEIVE_SINGLE_PRODUCT:
       return merge({}, state, { [action.product.id]: action.product } );
     case REMOVE_PRODUCT:
-      let newState = merge({}, state);
       delete newState[action.product.id]
       return newState;
     case RECEIVE_PRODUCT_UPVOTE:
