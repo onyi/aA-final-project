@@ -3,8 +3,10 @@ import ProductIndex from './product_index';
 
 import { 
   fetchAllProducts, 
+  fetchPartialProducts,
   fetchProduct,
-  deleteProduct
+  deleteProduct,
+
 } from '../../actions/product_action';
 
 
@@ -14,13 +16,14 @@ const msp = (state = {}, ownProps) => {
   return {
     products: Object.values(state.entities.products),
     loading: state.ui.loading.product.indexLoading,
-    errors: state.errors.product
+    errors: state.errors.product,
+    partialLoading: state.ui.loading.product.indexPartialLoading
   };
 };
 
 
 const mdp = dispatch => ({
-  getAllProducts: () => dispatch(fetchAllProducts()),
+  getAllProducts: (offset, limit) => dispatch(fetchPartialProducts(offset, limit)),
   getProduct: (id) => dispatch(fetchProduct(id)),
   deleteProduct: (id) => dispatch(deleteProduct(id)),
 });

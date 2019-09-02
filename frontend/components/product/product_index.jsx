@@ -22,16 +22,114 @@ class ProductIndex extends React.Component {
     this.state = {
       loading: true,
       modalOpen: false,
-      productToShow: null
+      productToShow: null,
+      showMoveToTopButton: false,
+      partialLoading: false
     }
+    this.offset = 0,
+    this.limit = 20,
+    this.count = 20,
+    this.scrollPosition = 0;
     this.showProductDetail = this.showProductDetail.bind(this);
+    this.throttle = this.throttle.bind(this);
+    this.debounce = this.debounce.bind(this);
   }
+
+  debounce(callback, delay){
+    let timer;
+    let scrolled = false;
+
+    return function(){
+      const context = this;
+      const args = arguments;
+
+      clearTimeout(timer);
+
+      let body = document.body;
+      let html = document.documentElement;
+
+      let scrolledHeight = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight;
+      // console.log(`Scrolled Height: ${scrolledHeight}`);
+      scrolled = scrolledHeight > window.innerHeight;
+      let pageHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+        html.clientHeight, html.scrollHeight, html.offsetHeight);
+      let bottomThreshold = pageHeight * 0.9;
+      let bottomOfWindow =  scrolledHeight > bottomThreshold;
+
+      if(bottomOfWindow && scrolled){
+        // console.log(`Scrolled to bottom`);
+        timer = setTimeout( () => {
+          callback.apply(context, args)
+        }, delay)
+      }
+
+    }
+
+  }
+
+  throttle(callback, wait){
+
+    let lastRun;
+    let isRunning;
+    return function() {
+      const context = this;
+      const args = arguments;
+
+      if(!lastRun){
+        callback.apply(context, args);
+        lastRun = moment();
+      }else{
+        setTimeout(
+          callback.apply(context, args),
+
+        )
+      }
+
+
+
+
+    }
+
+  }
+
 
   componentDidMount(){
     // console.log(`ProductIndex`);
-    this.props.getAllProducts();
+    this.props.getAllProducts(this.offset, this.limit);
+
+    // let body = document.body;
+    // let html = document.documentElement;
+
+    let debounce = this.debounce(() => {
+      this.offset = this.offset + this.limit;
+      this.scrollPosition = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight;
+      // if(this.offset < this.count)
+      this.props.getAllProducts(this.offset, this.limit);
+     }, 2000);
+
+    window.onscroll = () => {
+      debounce();
+   }
 
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if (prevState.products.length < this.props.products.length) {
+      console.log(`Move Y position ${this.scrollPosition}`);
+      window.moveTo(0, this.scrollPosition);
+    }
+    return null;
+  }
+
+  // getSnapshotBeforeUpdate(prevProps, prevState) {
+  //   // Are we adding new items to the list?
+  //   // Capture the scroll position so we can adjust scroll later.
+  //   if (prevProps.products.length < this.props.products.length) {
+  //     console.log(`Move Y position ${this.scrollPosition}`);
+  //     window.moveTo(0, this.scrollPosition);
+  //   }
+  //   return null;
+  // }
 
   componentDidUpdate(){
 
@@ -57,7 +155,7 @@ class ProductIndex extends React.Component {
     // console.log(`${deleteProduct}`);
     // console.log(`ProductIndex Render, props: ${JSON.stringify(this.props)} `);
     // if (this.props.products.length === 0){
-    if (loading){
+    if (loading){   
       return (<LoadingIcon />)
     }else{
       return (
@@ -67,7 +165,7 @@ class ProductIndex extends React.Component {
             <div className="container-header">
               <h3>Products</h3>
             </div>
-            <ul className="product-list-index">
+            <ul className="product-list-index" >
               {products.sort( (a,b) => {
                 return b.id - a.id;
               })
@@ -83,6 +181,7 @@ class ProductIndex extends React.Component {
                     showProductDetail={this.showProductDetail}
                   /> 
               )}
+              {this.props.partialLoading ? <LoadingIcon /> : ""}
             </ul>
           </div>
           <div className="product-list-sidebar">
