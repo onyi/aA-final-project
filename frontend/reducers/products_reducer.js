@@ -19,7 +19,7 @@ const productsReducer = (state = {}, action) => {
     case RECEIVE_PRODUCTS:
       return merge(newState, action.products);
     case RECEIVE_PUBLISHER_PRODUCTS:
-      return merge({}, action.products);
+      return merge(newState, action.products);
     case RECEIVE_SINGLE_PRODUCT:
       return merge({}, state, { [action.product.id]: action.product } );
     case REMOVE_PRODUCT:
