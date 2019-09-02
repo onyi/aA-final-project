@@ -67,21 +67,22 @@ class ProductIndex extends React.Component {
 
   }
 
-  throttle(callback, wait){
+  throttle(callback, waitTime){
 
-    let lastRun;
-    let isRunning;
+    let ranOnce;
+    let lastTimestamp;
     return function() {
       const context = this;
       const args = arguments;
 
-      if(!lastRun){
+      if(!ranOnce){
         callback.apply(context, args);
-        lastRun = moment();
+        lastTimestamp = moment();
+        ranOnce = true;
       }else{
         setTimeout(
           callback.apply(context, args),
-
+          waitTime - (moment() - lastTimestamp )
         )
       }
 
