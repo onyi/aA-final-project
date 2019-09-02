@@ -9,9 +9,12 @@ export const CLEAR_PRODUCT_ERRORS = 'CLEAR_PRODUCT_ERRORS';
 export const START_LOADING_ALL_PRODUCTS = 'START_LOADING_ALL_PRODUCTS';
 export const START_LOADING_PUBLISHER_PRODUCTS = 'START_LOADING_PUBLISHER_PRODUCTS';
 export const START_LOADING_PRODUCT = 'START_LOADING_PRODUCT';
+export const START_LOADING_PARTIAL_PRODUCTS = 'START_LOADING_PARTIAL_PRODUCTS';
+
 export const FINISH_LOADING_ALL_PRODUCTS = 'FINISH_LOADING_ALL_PRODUCTS';
 export const FINISH_LOADING_PUBLISHER_PRODUCTS = 'FINISH_LOADING_PUBLISHER_PRODUCTS';
 export const FINISH_LOADING_PRODUCT = 'FINISH_LOADING_PRODUCT';
+export const FINISH_LOADING_PARTIAL_PRODUCTS = 'FINISH_LOADING_PARTIAL_PRODUCTS';
 
 export const START_LOADING_UPVOTE = 'START_LOADING_UPVOTE';
 export const FINISH_LOADING_UPVOTE = 'FINISH_LOADING_UPVOTE';
@@ -102,6 +105,15 @@ export const finishLoadingAllProducts = () => ({
   loading: false
 });
 
+export const startLoadingPartialProducts = () => ({
+  type: START_LOADING_PARTIAL_PRODUCTS,
+  partialLoading: true
+});
+
+export const finishLoadingPartialProducts = () => ({
+  type: FINISH_LOADING_PARTIAL_PRODUCTS,
+  partialLoading: false
+});
 
 
 
@@ -124,9 +136,19 @@ export const receiveProductErrors = (errors, id) => ({
 export const fetchAllProducts = () => dispatch => {
   dispatch(startLoadingAllProducts());
   return ProductApiUtil.fetchAllProducts()
-    .then( products => {
-      dispatch(receiveProducts(products));
+    .then( payload => {
+      dispatch(receiveProducts(payload.products));
       dispatch(finishLoadingAllProducts());
+    })
+    .catch(errors => { dispatch(receiveProductErrors(errors)) } )
+};
+
+export const fetchPartialProducts = (offset, limit) => dispatch => {
+  dispatch(startLoadingPartialProducts());
+  return ProductApiUtil.fetchPartialProducts(offset, limit)
+    .then( payload => {
+      dispatch(receiveProducts(payload.products));
+      dispatch(finishLoadingPartialProducts());
     })
     .catch(errors => { dispatch(receiveProductErrors(errors)) } )
 };
