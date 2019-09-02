@@ -5,6 +5,14 @@ export const fetchAllProducts = () => (
   })
 );
 
+
+export const fetchPartialProducts = (offset, limit) => (
+  $.ajax({
+    url: `api/products?offset=${offset || 0}&limit=${limit || 20}`,
+    method: "GET"
+  })
+);
+
 export const fetchProduct = (id) => (
   $.ajax({
     url: `api/products/${id}`,
