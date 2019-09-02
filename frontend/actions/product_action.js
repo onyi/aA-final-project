@@ -157,8 +157,8 @@ export const fetchPartialProducts = (offset, limit) => dispatch => {
 export const fetchProductsByPublisher = (publisherId) => dispatch => {
   dispatch({ type: START_LOADING_PUBLISHER_PRODUCTS, loading: true });
   return ProductApiUtil.fetchProductByPublisher(publisherId)
-    .then( products => {
-      dispatch(receiveProducts(products));
+    .then( payload => {
+      dispatch(receivePublisherProducts(payload.products));
       dispatch({ type: FINISH_LOADING_PUBLISHER_PRODUCTS });
     })
     .catch(errors => { dispatch(receiveProductErrors(errors)) } )
