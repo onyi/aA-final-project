@@ -22,9 +22,9 @@ const msp = (state = {}, ownProps) => {
     profile_img: ''
   };
   let errors = state.errors.user;
-  let products = Object.values(state.entities.products).filter( 
+  let products = state.entities.users[userId].publishedProducts ? Object.values(state.entities.products).filter( 
     product => state.entities.users[userId].publishedProducts.includes(product.id)
-  );
+  ) : [];
   let loading = state.ui.loading.product.publishedProductLoading
   return { userId, user, errors, products, loading };
 };
