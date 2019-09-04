@@ -8,7 +8,8 @@ import {
   RECEIVE_PRODUCT_UPVOTE,
   OPEN_PRODUCT_FORM,
   CLOSE_PRODUCT_FORM,
-  REMOVE_PRODUCT
+  REMOVE_PRODUCT,
+  RECEIVE_SEARCH_PRODUCTS
 } from '../actions/product_action';
 
 const productsReducer = (state = {}, action) => {
@@ -18,6 +19,8 @@ const productsReducer = (state = {}, action) => {
   switch(action.type){
     case RECEIVE_PRODUCTS:
       return merge(newState, action.products);
+    case RECEIVE_SEARCH_PRODUCTS:
+      return merge({}, action.products);
     case RECEIVE_PUBLISHER_PRODUCTS:
       return merge(newState, action.products);
     case RECEIVE_SINGLE_PRODUCT:

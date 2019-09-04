@@ -2,6 +2,7 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PUBLISHER_PRODUCTS = 'RECEIVE_PUBLISHER_PRODUCTS';
 export const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
+export const RECEIVE_SEARCH_PRODUCTS = 'RECEIVE_SEARCH_PRODUCTS';
 
 export const RECEIVE_PRODUCT_ERRORS = 'RECEIVE_PRODUCT_ERRORS';
 export const CLEAR_PRODUCT_ERRORS = 'CLEAR_PRODUCT_ERRORS';
@@ -55,6 +56,12 @@ export const receiveSingleProduct = (product) => ({
   type: RECEIVE_SINGLE_PRODUCT,
   product
 });
+
+export const receiveSearchProducts = (products) => ({
+  type: RECEIVE_SEARCH_PRODUCTS,
+  products
+});
+
 
 export const removeProduct = (product) => ({
   type: REMOVE_PRODUCT,
@@ -275,8 +282,8 @@ export const searchProduct = (keyword, offset, limit) => dispatch => {
   console.dir(`search action`);
   dispatch(startLoadingAllProducts());
   return ProductApiUtil.searchProduct(keyword, offset, limit)
-    .then( products => {
-      dispatch(receiveProducts(products));
+    .then( payload => {
+      dispatch(receiveSearchProducts(payload.products));
       dispatch(finishLoadingAllProducts());
     })
     .catch( errors => {
